@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="#deedd5">
+    android:background="@drawable/background">
 
 
     <LinearLayout
@@ -32,7 +32,8 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:contentDescription="@string/logo_img"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="20dp"
@@ -46,9 +47,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="TikTalk"
+                android:text="@string/logo_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
-
         </LinearLayout>
 
         <EditText
@@ -68,7 +68,8 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="@string/login_editText_username"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
 
 
         <Button
@@ -80,11 +81,5 @@
             android:text="@string/login_button" />
 
     </LinearLayout>
-
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
