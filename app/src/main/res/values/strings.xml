@@ -5,4 +5,9 @@
     <string name="login_button">Login</string>
     <string name="logo_text">TikTalk</string>
     <string name="logo_img">logo</string>
+    <string name="nickname">Nickname</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="profile_pic">profile_pic</string>
+    <string name="register_btn">Register</string>
+    <string name="registration_header">Registration</string>
 </resources>
