@@ -73,7 +73,7 @@ public class Registration extends AppCompatActivity {
             et_password.setError("Password is required");
             return false;
         }
-        else if(!password.equals("regex")) { //todo check if password is valid
+        else if(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
             et_password.requestFocus();
             et_password.setError("Invalid password");
         }
