@@ -13,6 +13,8 @@ import android.os.Bundle;
 
 public class Registration extends AppCompatActivity {
 
+    final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
+
     EditText et_username, et_nickname, et_password, et_confirmation;
     Button register_btn;
 
@@ -37,10 +39,11 @@ public class Registration extends AppCompatActivity {
 
             Boolean valid = validate(username, password, confirmation);
 
-//            if(valid) {
-//                // register the user
-//            }
-
+            if(valid) {
+                // todo register the user
+                Intent i = new Intent(this, Login.class); //todo change "Login" to contacts list
+                startActivity(i);
+            }
         });
 
        // ImageView imageView = findViewById(R.id.imageView);
@@ -73,7 +76,7 @@ public class Registration extends AppCompatActivity {
             et_password.setError("Password is required");
             return false;
         }
-        else if(!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+        else if(!password.matches(PASSWORD_REGEX)) {
             et_password.requestFocus();
             et_password.setError("Invalid password");
         }
