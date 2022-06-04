@@ -53,23 +53,23 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="@string/login_editText_password"
-            android:inputType="textPassword"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/loginUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="@string/login_editText_username"
             android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="@string/login_editText_password"
+            android:inputType="textPassword"
             android:minHeight="48dp" />
 
 
