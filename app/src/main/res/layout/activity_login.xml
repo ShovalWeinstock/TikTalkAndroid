@@ -88,8 +88,7 @@
             android:layout_gravity="center"
             android:padding="8dp"
             android:textStyle="bold"
-            android:textColor="#bd685c"
-            />
+            android:textColor="#bd685c" />
 
         <LinearLayout
             android:layout_width="match_parent"

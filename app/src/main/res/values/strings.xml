@@ -15,5 +15,10 @@
     <string name="not_registered1">Not registered?</string>
     <string name="not_registered2">Click here</string>
     <string name="not_registered3">to register</string>
+    <string name="add_contact_header">Add Contact</string>
+    <string name="server">Server</string>
+    <string name="add_contact_btn">Add</string>
+    <string name="settings_header">Settings</string>
+    <string name="save">Save</string>
 
 </resources>
