@@ -19,7 +19,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,8 +88,7 @@
             android:layout_gravity="center"
             android:padding="8dp"
             android:textStyle="bold"
-            android:textColor="#bd685c"
-            />
+            android:textColor="#bd685c" />
 
         <LinearLayout
             android:layout_width="match_parent"
