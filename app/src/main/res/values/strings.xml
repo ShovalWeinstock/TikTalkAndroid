@@ -11,5 +11,9 @@
     <string name="register_btn">Register</string>
     <string name="registration_header">Registration</string>
     <string name="password_requirements">Your password must contain:\n - At least 8 characters\n - At least one lowercase\n - At least one uppercase\n - At least one number</string>
+    <string name="login_error_msg">Invalid username or password</string>
+    <string name="not_registered1">Not registered?</string>
+    <string name="not_registered2">Click here</string>
+    <string name="not_registered3">to register</string>
 
 </resources>

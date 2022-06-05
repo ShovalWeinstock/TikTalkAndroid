@@ -1,14 +1,13 @@
 package com.example.tiktalk;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
-
 import android.os.Bundle;
 
 public class Registration extends AppCompatActivity {
@@ -31,13 +30,16 @@ public class Registration extends AppCompatActivity {
         register_btn = findViewById(R.id.register_btn);
 
         register_btn.setOnClickListener(v -> {
+            // get user's input and validate it
             String username = et_username.getText().toString();
             String nickname = et_nickname.getText().toString();
             String password = et_password.getText().toString();
             String confirmation = et_confirmation.getText().toString();
+            //todo image
 
             Boolean valid = validate(username, password, confirmation);
 
+            // if the data is valid - register the user and login
             if(valid) {
                 // todo register the user
                 Intent i = new Intent(this, Login.class); //todo change "Login" to contacts list
@@ -45,18 +47,20 @@ public class Registration extends AppCompatActivity {
             }
         });
 
-       // ImageView imageView = findViewById(R.id.imageView);
-        //imageView.setOnClickListener(v -> {
-          //  Intent openGalleryIntent = new Intent(Intent.ACTION_PICK,
-            //                                      MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            //startActivityForResult(openGalleryIntent, 1000);
+        // pick profile picture
+       ImageView imageView = findViewById(R.id.imageView);
 
-            //@Override
-            //protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
+       ActivityResultLauncher<String> mGetContent = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> imageView.setImageURI(uri)
+        );
 
-        //});
+       imageView.setOnClickListener(v -> mGetContent.launch("image/*"));
     }
 
+
+
+    // validate the registration data
     private Boolean validate(String username, String password, String confirmation) {
         // validate username
         if(username.length() == 0) {
@@ -79,7 +83,7 @@ public class Registration extends AppCompatActivity {
             et_password.requestFocus();
             et_password.setError("Invalid password");
         }
-        // validate conformation
+        // validate password confirmation
         if(confirmation.length() == 0) {
             et_confirmation.requestFocus();
             et_confirmation.setError("Password confirmation is required");

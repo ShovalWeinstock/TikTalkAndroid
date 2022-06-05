@@ -81,6 +81,17 @@
             android:background="#617a74"
             android:text="@string/login_button" />
 
+        <TextView
+            android:id="@+id/login_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textColor="#bd685c"
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -91,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Not registered? " />
+                android:text="@string/not_registered1" />
 
             <TextView
                 android:id="@+id/click_to_register"
@@ -99,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:textStyle="bold|italic"
-                android:text="Click here"
+                android:text="@string/not_registered2"
                 android:clickable="true"
                 android:focusable="true" />
 
@@ -107,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text=" to register" />
+                android:text="@string/not_registered3" />
 
         </LinearLayout>
 
