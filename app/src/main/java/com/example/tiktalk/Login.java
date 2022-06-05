@@ -31,6 +31,7 @@ public class Login extends AppCompatActivity {
             String username = et_username.getText().toString();
             String password = et_password.getText().toString();
             Boolean check = validate(username, password);
+
             // if the data is valid - login to user
             if(check) {
                 login_error.setText("");
