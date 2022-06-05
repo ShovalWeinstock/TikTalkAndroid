@@ -53,6 +53,6 @@ public class Login extends AppCompatActivity {
 
     // validate username and password
     private Boolean validate(String username, String password) {
-        return true; // todo compare with db
+        return false; // todo compare with db
     }
 }
