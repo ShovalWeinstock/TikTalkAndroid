@@ -1,31 +1,36 @@
 package com.example.tiktalk;
 
+
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
 public class Contact {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey(autoGenerate = false)
+    @NonNull
+    private String id;
     private String name;
     private String last;
     private String lastDate;
+    private String server;
 
-    public Contact(int id, String name, String last, String lastDate) {
+    public Contact(String id, String name, String last, String lastDate, String server) {
         this.id = id;
         this.name = name;
         this.last = last;
         this.lastDate = lastDate;
+        this.server = server;
     }
 
     public Contact() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -51,5 +56,17 @@ public class Contact {
 
     public void setLastDate(String lastDate) {
         this.lastDate = lastDate;
+    }
+
+    public String getServer() { return server;}
+
+    public void setServer(String server) { this.server = server;}
+
+    @Override
+    public String toString() {
+        return  ", name='" + name + '\'' +
+                ", last='" + last + '\'' +
+                ", lastDate='" + lastDate + '\'' +
+                '}';
     }
 }
