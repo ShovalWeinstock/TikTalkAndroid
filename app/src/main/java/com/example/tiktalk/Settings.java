@@ -29,7 +29,7 @@ public class Settings extends AppCompatActivity {
             // if the data is valid - login to user
             if(check) {
                 // todo save the changes
-                Intent i = new Intent(this, Registration.class); //todo change "Registration" to contacts list
+                Intent i = new Intent(this, RegistrationActivity.class); //todo change "Registration" to contacts list
                 startActivity(i);
             }
         });

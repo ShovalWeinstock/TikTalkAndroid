@@ -10,6 +10,7 @@ import java.util.List;
 
 @Dao
 public interface ContactDao {
+
     @Query("SELECT * FROM contact")
     List<Contact> index();
 
@@ -23,7 +24,7 @@ public interface ContactDao {
     void update(Contact... contacts);
 
     @Delete
-    void delete(Contact... contactsposts);
+    void delete(Contact... contacts);
 }
 
 

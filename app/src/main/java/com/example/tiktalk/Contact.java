@@ -5,6 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Contact {
     @PrimaryKey(autoGenerate = false)
@@ -14,6 +17,7 @@ public class Contact {
     private String last;
     private String lastDate;
     private String server;
+    //private List<Message> chatWithContact;
 
     public Contact(String id, String name, String last, String lastDate, String server) {
         this.id = id;
@@ -21,6 +25,7 @@ public class Contact {
         this.last = last;
         this.lastDate = lastDate;
         this.server = server;
+        //this.chatWithContact = new ArrayList<>();
     }
 
     public Contact() {
@@ -62,9 +67,13 @@ public class Contact {
 
     public void setServer(String server) { this.server = server;}
 
+    //public List<Message> getChatWithContact() {return chatWithContact;}
+
+    //public void setChatWithContact(List<Message> chatWithContact) {this.chatWithContact = chatWithContact;}
+
     @Override
     public String toString() {
-        return  ", name='" + name + '\'' +
+        return  "{ name='" + name + '\'' +
                 ", last='" + last + '\'' +
                 ", lastDate='" + lastDate + '\'' +
                 '}';

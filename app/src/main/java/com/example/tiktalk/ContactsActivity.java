@@ -67,6 +67,5 @@ public class ContactsActivity extends AppCompatActivity {
         //recreate the contact list
         contacts.addAll(contactDao.index());
         adapter.notifyDataSetChanged();
-
     }
 }

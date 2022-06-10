@@ -42,6 +42,7 @@ public class AddContact extends AppCompatActivity {
             // if the data is valid - login to user
             if(check) {
                 Contact contact = new Contact(username, nickname,"","", server);
+
                 contactDao.insert(contact);
                 // todo add the contact
 //                Intent i = new Intent(this, ContactsActivity.class); //todo change "Registration" to contacts list
