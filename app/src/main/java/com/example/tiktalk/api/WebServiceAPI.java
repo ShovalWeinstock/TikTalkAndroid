@@ -14,9 +14,13 @@ public interface WebServiceAPI {
     @GET("user")
      Call<List<User>> getUsers();
 
+    @GET("user/{id}")
+    Call<User> getUser(@Path("id") String id);
+
     @POST("user")
     Call<Void> createPost(@Body User user);
 
     @DELETE("user/{id}")
-    Call<Void> deletePost(@Path("id") String id);
- }
+    Call<Void> deleteUser(@Path("id") String id);
+
+}

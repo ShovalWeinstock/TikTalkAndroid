@@ -25,11 +25,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /////////////////////////////
-        UserAPI userApi = new UserAPI();
-        userApi.get();
-        /////////////////////////////
-
         // username and password input bars
         et_username = findViewById(R.id.loginUsername);
         et_password = findViewById(R.id.loginPassword);
@@ -45,6 +40,12 @@ public class LoginActivity extends AppCompatActivity {
             // if the data is valid - login to user
             if(check) {
                 login_error.setText("");
+                /////////////////////////////
+                UserAPI userApi = new UserAPI();
+                User user;
+                userApi.getUser(username, user);
+                LoggedInUser.setLoggedInUser(user);
+                /////////////////////////////
                 Intent i = new Intent(this, ContactsActivity.class);
                 startActivity(i);
             }
