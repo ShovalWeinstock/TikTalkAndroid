@@ -13,9 +13,7 @@
         android:background="#deedd5"
         android:orientation="vertical"
         android:padding="20dp"
-        app:layout_constraintBottom_toTopOf="parent"
-        >
-<!--        it looks like there is only one because all are layout_constraintBottom_toTopOf="parent-->
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/contactNickname"
