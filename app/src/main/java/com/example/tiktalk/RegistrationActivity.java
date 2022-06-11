@@ -54,7 +54,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 //User user = new User(username, nickname, profilePic, password);
                 User user = new User(username, nickname, password);
                 //userDao.insert(user); // todo ?
-                LoggedInUser.setLoggedInUser(user); //todo ?
+                LoggedInUser.setLoggedInUser(username, nickname); //todo ?
                 Intent i = new Intent(this, ContactsActivity.class);
                 startActivity(i);
             }

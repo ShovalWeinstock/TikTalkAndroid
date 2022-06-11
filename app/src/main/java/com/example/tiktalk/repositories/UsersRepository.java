@@ -33,10 +33,10 @@ public class UsersRepository {
         protected void onActive() {
             super.onActive();
 
-            new Thread(() ->
-            {
-                userListData.postValue(dao.get());
-            }).start();
+//            new Thread(() ->
+//            {
+//                userListData.postValue(dao.get());
+//            }).start();
 
         }
 

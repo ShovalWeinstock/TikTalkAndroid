@@ -18,29 +18,21 @@ public class UsersViewModel {
     }
 
 
-
-
-
-
-
-
-
-
-    public LiveData<List<User>> get() {
-        return users;
-    }
-
-    public void add(User user) {
-        repository.add(user);
-    }
-
-    public void delete(User user) {
-        repository.delete(user);
-    }
-
-    public void reload() {
-        repository.reload();
-    }
+//    public LiveData<List<User>> get() {
+//        return users;
+//    }
+//
+//    public void add(User user) {
+//        repository.add(user);
+//    }
+//
+//    public void delete(User user) {
+//        repository.delete(user);
+//    }
+//
+//    public void reload() {
+//        repository.reload();
+//    }
 }
 
 
