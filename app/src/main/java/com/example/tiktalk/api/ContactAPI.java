@@ -50,11 +50,8 @@ public class ContactAPI {
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                //users.setValue(response.body());
                 List<Contact> Contacts =  response.body();//todo delete
-                int x = 0;
-
-//                new Thread(() -> {
+//                 new Thread(() -> {
 //                    dao.clear();
 //                    dao.insertList(response.body());
 //                    contactsListData.postValue(dao.index());
@@ -65,26 +62,5 @@ public class ContactAPI {
             public void onFailure(Call<List<Contact>> call, Throwable t) {}
         });
     }
-
-//    public void get() {
-//        Call<List<User>> call = webServiceAPI.getUsers();
-//        call.enqueue(new Callback<List<User>>() {
-//            @Override
-//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                List<User> users = response.body(); //todo delete
-//            }
-//
-////                new Thread(() -> {
-////                    dao.clear();
-////                    dao.insertList(response.body());
-////                    postListData.postValue(dao.get());
-////                }).start();
-////            }
-//
-//            @Override
-//            public void onFailure(Call<List<User>> call, Throwable t) {
-//            }
-//        });
-//    }
 
 }

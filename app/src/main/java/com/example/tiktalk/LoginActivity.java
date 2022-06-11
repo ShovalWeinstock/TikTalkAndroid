@@ -42,10 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             if(check) {
                 login_error.setText("");
                 LoggedInUser.setLoggedInUser(username, password);// todo get nickname and password
-                /////////////////////////////
-                ContactAPI contactsApi = new ContactAPI();
-                contactsApi.get();
-                /////////////////////////////
                 Intent i = new Intent(this, ContactsActivity.class);
                 startActivity(i);
             }
