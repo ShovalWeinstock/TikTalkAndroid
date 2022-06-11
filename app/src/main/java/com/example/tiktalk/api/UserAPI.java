@@ -41,22 +41,20 @@ public class UserAPI {
 //        webServiceAPI = retrofit.create(WebServiceAPI.class);
 //    }
 
-    public void get(MutableLiveData<List<User>> users) {
+    public void get() {
         Call<List<User>> call = webServiceAPI.getUsers();
         call.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                users.setValue(response.body());
-                //List<User> users =  response.body();//todo delete
+                List<User> users = response.body(); //todo delete
+            }
 
-//                new Thread(() ->
-//                {
+//                new Thread(() -> {
 //                    dao.clear();
 //                    dao.insertList(response.body());
 //                    postListData.postValue(dao.get());
 //                }).start();
-
-            }
+//            }
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {

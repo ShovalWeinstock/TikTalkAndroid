@@ -4,8 +4,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.tiktalk.Contact;
 import com.example.tiktalk.ContactDao;
+import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
+import com.example.tiktalk.User;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -42,15 +45,13 @@ public class ContactAPI {
 //        webServiceAPI = retrofit.create(WebServiceAPI.class);
 //    }
 
-    public void get(String id) {
-        Call<List<Contact>> call = webServiceAPI.getContacts(id);
+    public void get() {
+        Call<List<Contact>> call = webServiceAPI.getContacts(LoggedInUser.username);
         call.enqueue(new Callback<List<Contact>>() {
-
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 //users.setValue(response.body());
-                //List<Contact> Contacts =  response.body();//todo delete
-                contactsListData.postValue(response.body());
+                List<Contact> Contacts =  response.body();//todo delete
                 int x = 0;
 
 //                new Thread(() -> {
@@ -64,5 +65,26 @@ public class ContactAPI {
             public void onFailure(Call<List<Contact>> call, Throwable t) {}
         });
     }
+
+//    public void get() {
+//        Call<List<User>> call = webServiceAPI.getUsers();
+//        call.enqueue(new Callback<List<User>>() {
+//            @Override
+//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                List<User> users = response.body(); //todo delete
+//            }
+//
+////                new Thread(() -> {
+////                    dao.clear();
+////                    dao.insertList(response.body());
+////                    postListData.postValue(dao.get());
+////                }).start();
+////            }
+//
+//            @Override
+//            public void onFailure(Call<List<User>> call, Throwable t) {
+//            }
+//        });
+//    }
 
 }
