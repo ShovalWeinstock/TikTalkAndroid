@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UserAPI {
     private MutableLiveData<List<User>> usersListData;
     private UserDao dao;
+    private boolean userExsits;
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
 
@@ -28,6 +29,7 @@ public class UserAPI {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
+        this.userExsits = false;
     }
 
 //    public UserAPI(MutableLiveData<List<User>> usersListData, UserDao dao) {
@@ -41,34 +43,18 @@ public class UserAPI {
 //        webServiceAPI = retrofit.create(WebServiceAPI.class);
 //    }
 
-    public void get() {
-        Call<List<User>> call = webServiceAPI.getUsers();
-        call.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                List<User> users = response.body(); //todo delete
-            }
 
-//                new Thread(() -> {
-//                    dao.clear();
-//                    dao.insertList(response.body());
-//                    postListData.postValue(dao.get());
-//                }).start();
-//            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-            }
-        });
-    }
-
-    public void getUser(String id, MutableLiveData<User> user) {
+    public void getUser(String id) {
         Call<User> call = webServiceAPI.getUser(id);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                user.setValue(response.body());
-                //User user = response.body(); //todo delete
+                //user = response.body();
+                User u = response.body(); //todo delete
+                int i = 5;
+                if(u != null){
+                    userExsits = true;
+                }
             }
 //                new Thread(() -> {
 //                    dao.clear();
@@ -79,6 +65,28 @@ public class UserAPI {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
+    }
+
+    public boolean isUserExsits() {return userExsits;}
+
+    public void addUser(User user) {
+        Call<Void> call = webServiceAPI.createUser(user);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                int i = 5;
+            }
+//                new Thread(() -> {
+//                    dao.clear();
+//                    dao.insertList(response.body());
+//                    postListData.postValue(dao.get());
+//                }).start();
+//            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
             }
         });
     }

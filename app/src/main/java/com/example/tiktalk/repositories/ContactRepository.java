@@ -18,6 +18,7 @@ import java.util.List;
 
 public class ContactRepository {
     private ContactDao dao;
+    // contacts local DB
     private ContactListData contactListData;
     private ContactAPI api;
 
@@ -52,7 +53,7 @@ public class ContactRepository {
             // not local database
             //ContactAPI contactsApi = new ContactAPI();
             //contactsApi.get();
-            api.get(this);
+            api.get();
         }
     }
 
@@ -62,16 +63,14 @@ public class ContactRepository {
 
     public void add(final Contact contact) {
         api.add(contact);
-
     }
 
     public void delete(final Contact contact) {
         api.delete(contact);
-
     }
 
     public void reload() {
-        api.get(contactListData);
+        api.get();
     }
 
 }

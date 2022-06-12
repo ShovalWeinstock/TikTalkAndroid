@@ -8,11 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tiktalk.api.ContactAPI;
 import com.example.tiktalk.api.UserAPI;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
             // if the data is valid - login to user
             if(check) {
                 login_error.setText("");
-                LoggedInUser.setLoggedInUser(username, password);// todo get nickname and password
+                LoggedInUser.setLoggedInUser(username, password);// todo get nickname instead of password
                 Intent i = new Intent(this, ContactsActivity.class);
                 startActivity(i);
             }
@@ -61,6 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
     // validate username and password
     private Boolean validate(String username, String password) {
-        return true; // todo compare with db
+        return true;
     }
 }

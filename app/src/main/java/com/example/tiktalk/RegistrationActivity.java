@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.os.Bundle;
 
+import com.example.tiktalk.api.UserAPI;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
@@ -54,6 +56,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 //User user = new User(username, nickname, profilePic, password);
                 User user = new User(username, nickname, password);
                 //userDao.insert(user); // todo ?
+                UserAPI api = new UserAPI();
+                api.addUser(user);
+
                 LoggedInUser.setLoggedInUser(username, nickname); //todo ?
                 Intent i = new Intent(this, ContactsActivity.class);
                 startActivity(i);

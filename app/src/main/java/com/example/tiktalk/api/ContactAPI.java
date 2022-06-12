@@ -46,18 +46,18 @@ public class ContactAPI {
     }
 
     // get all the contacts of the logged-in user (update the given MutableLiveData object)
-    public void get(MutableLiveData<List<Contact>> contacts) {
+    public void get() {
         Call<List<Contact>> call = webServiceAPI.getContacts(LoggedInUser.username);
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
                 //List<Contact> Contacts =  response.body();//todo delete
-                contacts.setValue(response.body());
-//                 new Thread(() -> {
-//                    dao.clear();
-//                    dao.insertList(response.body());
-//                    contactsListData.postValue(dao.index());
-//                }).start();
+                //contacts.setValue(response.body());
+                 new Thread(() -> {
+                    dao.clear();
+                    dao.insertList(response.body());
+                    contactsListData.postValue(dao.index());
+                }).start();
             }
 
             @Override
