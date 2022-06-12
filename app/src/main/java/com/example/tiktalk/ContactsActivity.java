@@ -25,8 +25,9 @@ public class ContactsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contacts);
         // reference to Dao
         db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "ContactDB")
-            .allowMainThreadQueries()
-            .build();
+                .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
+                .build();
         contactDao = db.contactDao();
 
         // adapter from list into linear item view

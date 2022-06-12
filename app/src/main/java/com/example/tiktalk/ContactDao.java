@@ -23,7 +23,7 @@ public interface ContactDao {
     void update(Contact... contacts);
 
     @Delete
-    void delete(Contact... contactsposts);
+    void delete(Contact... contacts);
 }
 
 

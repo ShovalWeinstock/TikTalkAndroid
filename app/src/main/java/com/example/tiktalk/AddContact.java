@@ -7,6 +7,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import java.util.ArrayList;
+
 
 public class AddContact extends AppCompatActivity {
 
@@ -41,7 +43,7 @@ public class AddContact extends AppCompatActivity {
 
             // if the data is valid - login to user
             if(check) {
-                Contact contact = new Contact(username, nickname,"","", server);
+                Contact contact = new Contact(username, nickname,"","", server, new ArrayList<Message>());
                 contactDao.insert(contact);
                 // todo add the contact
 //                Intent i = new Intent(this, ContactsActivity.class); //todo change "Registration" to contacts list
