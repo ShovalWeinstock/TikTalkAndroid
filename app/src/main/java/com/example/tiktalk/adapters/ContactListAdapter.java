@@ -20,6 +20,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 class ContactViewHolder extends RecyclerView.ViewHolder {
     private final TextView contactNickname;
     private final TextView lastMsg;
+    private final TextView date;
     //private final ImageView profilePic;
 
 
@@ -27,6 +28,8 @@ class ContactViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         this.contactNickname = itemView.findViewById(R.id.contactNickname);
         this.lastMsg = itemView.findViewById(R.id.lastMsg);
+        this.date = itemView.findViewById(R.id.lastMsgTime);
+
         //this.profilePic = profilePic;
     }
 }
@@ -48,6 +51,7 @@ class ContactViewHolder extends RecyclerView.ViewHolder {
             final Contact current = contacts.get(position);
             holder.contactNickname.setText(current.getName());
             holder.lastMsg.setText(current.getLast());
+            holder.date.setText(current.getLastDate());
         }
     }
 
