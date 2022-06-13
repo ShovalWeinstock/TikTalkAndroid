@@ -12,18 +12,12 @@ public class ContactViewModel extends ViewModel {
 
     private ContactRepository repository;
     private LiveData<List<Contact>> contacts;
-    private static volatile ContactViewModel myViewModel;
 
     public ContactViewModel() {
         repository = new ContactRepository();
         contacts = repository.getAll();
     }
-    public static ContactViewModel getViewModel(){
-        if (myViewModel == null){
-            myViewModel = new ContactViewModel();
-        }
-        return myViewModel;
-    }
+
     public LiveData<List<Contact>> get() {
         return contacts;
     }
