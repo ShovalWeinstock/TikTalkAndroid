@@ -63,10 +63,11 @@ public class ContactsActivity extends AppCompatActivity {
 //            return true;
 //        });
 //
-//        //edit contact
+        //edit contact
 //        lvContacts.setOnItemClickListener((adapterView, view, i, l) -> {
 //            Intent intent = new Intent(this, UpdateContactActivity.class);
-//            intent.putExtra("id", contacts.get(i).getId());
+////            intent.putExtra("id", contacts.get(i).getId());
+//            intent.putExtra("id", viewModel.get().getValue().get(i).getId());
 //            startActivity(intent);
 //        });
 

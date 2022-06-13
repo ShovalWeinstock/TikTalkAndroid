@@ -4,6 +4,7 @@ import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.User;
 
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -34,10 +35,9 @@ public interface WebServiceAPI {
     @POST("contacts/{contact}/messages?user={id}")
     Call<Void> addMsg(@Path("id") String id, @Path("contact") String contact, @Body String content);
 
-    @POST("contacts/?user={id}")
-    Call<Void> addContact(@Body String contactId, @Body String contactNickname,
-                          @Body String contactServer, @Path("id") String id);
-
+    @POST("contacts")
+    Call<Void> addContact(@Query("user") String userId,
+                          @Body Contact contact);
 
     // transfer @POST()
     // invitations

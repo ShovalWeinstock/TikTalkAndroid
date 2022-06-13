@@ -65,6 +65,23 @@ public class ContactAPI {
     }
 
     public void add(Contact contact) { // todo implement
+        Call<Void> call = webServiceAPI.addContact(
+                LoggedInUser.username,
+                contact
+                );
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+//                List<Contact> Contacts =  response.body();//todo delete
+//                contacts.setValue(response.body());
+                response.isSuccessful();// todo:do something
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {}
+        });
+    }
+    public void update(Contact contact) { // todo implement
     }
 
     public void delete(Contact contact) { // todo implement

@@ -21,10 +21,6 @@ public class ContactRepository {
 
     public ContactRepository() {
         db = AppDB.getDatabase(MyApplication.context);
-//        db = Room.databaseBuilder(MyApplication.context, AppDB.class, "ContactDB")
-//                .allowMainThreadQueries()
-//                .fallbackToDestructiveMigration()
-//                .build();
         contactDao = db.contactDao();
         contactListData = new ContactListData();
         api = new ContactAPI(contactListData, contactDao);
@@ -69,6 +65,10 @@ public class ContactRepository {
     public void add(final Contact contact) {
         contactDao.insert(contact);
         api.add(contact);
+    }
+    public void update(final Contact contact) {
+        contactDao.update(contact);
+        api.update(contact);
     }
 
     public void delete(final Contact contact) {
