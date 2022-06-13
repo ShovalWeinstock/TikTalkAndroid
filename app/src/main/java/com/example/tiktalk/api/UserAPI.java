@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
-import com.example.tiktalk.User;
+import com.example.tiktalk.models.User;
 import com.example.tiktalk.UserDao;
 
 import java.util.List;

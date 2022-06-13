@@ -7,12 +7,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-@Database(entities = {Contact.class, User.class},
-            version = 7)
-@TypeConverters({Contact.Converters.class})
-//autoMigrations = {@AutoMigration(from = 3, to = 4)},
-//            exportSchema = true)
+import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.User;
 
+@Database(  entities = {Contact.class, User.class},
+            version = 8)
+            @TypeConverters({Contact.Converters.class}
+            )
+
+//todo: not truly singletone - need to make everything private and add creation method
 public abstract class AppDB extends RoomDatabase {
     public abstract ContactDao contactDao();
     public abstract UserDao userDao();
@@ -23,6 +26,7 @@ public abstract class AppDB extends RoomDatabase {
             database = Room.databaseBuilder(context.getApplicationContext(),
                             AppDB.class, "TikTalkDB")
                     .allowMainThreadQueries()
+                    .fallbackToDestructiveMigration()
                     .build();
         }
         return database;

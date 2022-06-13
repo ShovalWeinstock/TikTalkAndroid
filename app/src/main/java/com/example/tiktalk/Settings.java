@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.tiktalk.activityLogic.RegistrationActivity;
+
 public class Settings extends AppCompatActivity {
 
     EditText et_server;

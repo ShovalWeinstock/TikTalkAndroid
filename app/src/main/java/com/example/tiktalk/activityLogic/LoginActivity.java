@@ -1,6 +1,4 @@
-package com.example.tiktalk;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +6,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tiktalk.api.UserAPI;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tiktalk.LoggedInUser;
+import com.example.tiktalk.R;
 
 
 public class LoginActivity extends AppCompatActivity {

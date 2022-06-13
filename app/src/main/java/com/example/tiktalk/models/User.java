@@ -1,11 +1,8 @@
-package com.example.tiktalk;
+package com.example.tiktalk.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class User {

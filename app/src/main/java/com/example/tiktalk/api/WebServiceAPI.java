@@ -1,7 +1,7 @@
 package com.example.tiktalk.api;
 
-import com.example.tiktalk.Contact;
-import com.example.tiktalk.User;
+import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.User;
 
 import java.util.List;
 import retrofit2.Call;

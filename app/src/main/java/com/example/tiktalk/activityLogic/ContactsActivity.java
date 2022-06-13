@@ -1,32 +1,25 @@
-package com.example.tiktalk;
+package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.tiktalk.R;
 import com.example.tiktalk.adapters.ContactListAdapter;
-import com.example.tiktalk.api.ContactAPI;
+import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.viewModels.ContactViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity {
-    private AppDB db;
-    private ContactDao contactDao;
     private List<Contact> contacts;
-    private ArrayAdapter<Contact> adapter;
+    private ContactListAdapter adapter;
     private ContactViewModel viewModel;
 
     // todo currently each contact is full screen
@@ -39,15 +32,9 @@ public class ContactsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
         RecyclerView lvContacts = findViewById(R.id.lstContacts);
-        final ContactListAdapter adapter = new ContactListAdapter(this);
+        adapter = new ContactListAdapter(this);
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
-
-        // hard coded
-        //List<Contact> lst = new ArrayList<>();
-        //lst.add(new Contact("String id", "String name", "String last", "String lastDate", "String server"));
-        //lst.add(new Contact("String id2", "String name2", "String last", "String lastDate", "String server"));
-        //adapter.setContacts(lst);
 
         SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
         refreshLayout.setOnRefreshListener(() -> {
@@ -57,14 +44,14 @@ public class ContactsActivity extends AppCompatActivity {
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {
             adapter.setContacts(contacts);
-            //refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
+//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
 
 
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         //add contact
         btnAdd.setOnClickListener(view -> {
-            Intent i = new Intent(this, AddContact.class);
+            Intent i = new Intent(this, AddContactActivity.class);
             startActivity(i);
         });
 
@@ -85,12 +72,13 @@ public class ContactsActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        contacts.clear();
-//        //recreate the contact list
-//        contacts.addAll(contactDao.index());
-//        adapter.notifyDataSetChanged();
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //recreate the contact list
+        viewModel.get().observe(this, contacts -> {
+            adapter.setContacts(contacts);
+//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
+        });
+    }
 }

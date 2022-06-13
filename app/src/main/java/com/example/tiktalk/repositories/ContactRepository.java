@@ -1,32 +1,33 @@
 package com.example.tiktalk.repositories;
 
-import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.room.Room;
 
 import com.example.tiktalk.AppDB;
-import com.example.tiktalk.Contact;
 import com.example.tiktalk.ContactDao;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.api.ContactAPI;
+import com.example.tiktalk.models.Contact;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class ContactRepository {
-    private ContactDao dao;
+    private ContactDao contactDao;
     // contacts local DB
     private ContactListData contactListData;
     private ContactAPI api;
+    private AppDB db;
 
     public ContactRepository() {
-        AppDB db = AppDB.getDatabase(MyApplication.context);
-        dao = db.contactDao();
+        db = AppDB.getDatabase(MyApplication.context);
+//        db = Room.databaseBuilder(MyApplication.context, AppDB.class, "ContactDB")
+//                .allowMainThreadQueries()
+//                .fallbackToDestructiveMigration()
+//                .build();
+        contactDao = db.contactDao();
         contactListData = new ContactListData();
-        api = new ContactAPI(contactListData, dao);
+        api = new ContactAPI(contactListData, contactDao);
         //api = new ContactAPI(); // no dao
     }
 
@@ -36,24 +37,28 @@ public class ContactRepository {
             super();
             // local database
             //not hard coded:
-            List<Contact> contacts = dao.index();
-            // hard coded (no dao):
-            //List<Contact> contacts = new ArrayList<>();
-            //contacts.add(new Contact("shoval", "shov", "hi", "5/5/5", "localhost:555"));
+            List<Contact> contacts = contactDao.index();
             setValue(contacts);
         }
 
         @Override
         protected void onActive() {
             super.onActive();
+            //change the db to the one containing the info from the server
+            db = AppDB.getDatabase(MyApplication.context);
+            contactDao = db.contactDao();
+            // update the mutable live data
+            contactListData.postValue(contactDao.index());
             new Thread(() -> {
-                contactListData.postValue(dao.index());
+                //sleep for emphasis the communication with the server
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                // not local database
+                api.get();
             }).start();
-
-            // not local database
-            //ContactAPI contactsApi = new ContactAPI();
-            //contactsApi.get();
-            api.get();
         }
     }
 
@@ -62,10 +67,12 @@ public class ContactRepository {
     }
 
     public void add(final Contact contact) {
+        contactDao.insert(contact);
         api.add(contact);
     }
 
     public void delete(final Contact contact) {
+        contactDao.delete(contact);
         api.delete(contact);
     }
 

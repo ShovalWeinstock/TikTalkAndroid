@@ -1,4 +1,4 @@
-package com.example.tiktalk;
+package com.example.tiktalk.activityLogic;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -6,6 +6,11 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
+
+import com.example.tiktalk.AppDB;
+import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.ContactDao;
+import com.example.tiktalk.R;
 
 public class UpdateContactActivity extends AppCompatActivity {
 

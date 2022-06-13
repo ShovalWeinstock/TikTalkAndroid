@@ -1,9 +1,8 @@
-package com.example.tiktalk;
+package com.example.tiktalk.activityLogic;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.widget.Button;
@@ -11,6 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.os.Bundle;
 
+import com.example.tiktalk.LoggedInUser;
+import com.example.tiktalk.R;
+import com.example.tiktalk.models.User;
 import com.example.tiktalk.api.UserAPI;
 
 public class RegistrationActivity extends AppCompatActivity {

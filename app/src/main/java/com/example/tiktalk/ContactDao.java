@@ -2,10 +2,11 @@ package com.example.tiktalk;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.DeleteTable;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import com.example.tiktalk.models.Contact;
 
 import java.util.List;
 

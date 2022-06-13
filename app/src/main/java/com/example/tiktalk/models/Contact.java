@@ -1,4 +1,4 @@
-package com.example.tiktalk;
+package com.example.tiktalk.models;
 
 
 import androidx.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.example.tiktalk;
+package com.example.tiktalk.models;
 
 public class Message {
     private int id;

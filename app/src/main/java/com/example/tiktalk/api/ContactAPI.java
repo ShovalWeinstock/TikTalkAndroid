@@ -2,12 +2,11 @@ package com.example.tiktalk.api;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.tiktalk.Contact;
+import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.ContactDao;
 import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
-import com.example.tiktalk.User;
 
 import java.util.List;
 
@@ -51,8 +50,8 @@ public class ContactAPI {
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                //List<Contact> Contacts =  response.body();//todo delete
-                //contacts.setValue(response.body());
+                List<Contact> Contacts =  response.body();//todo delete
+//                contacts.setValue(response.body());
                  new Thread(() -> {
                     dao.clear();
                     dao.insertList(response.body());
