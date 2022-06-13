@@ -3,33 +3,22 @@ package com.example.tiktalk;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.example.tiktalk.adapters.ContactListAdapter;
-import com.example.tiktalk.api.ContactAPI;
 import com.example.tiktalk.viewModels.ContactViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends AppCompatActivity implements ContactListAdapter.onContactListener{
     private AppDB db;
     private ContactDao contactDao;
     private List<Contact> contacts;
     private ArrayAdapter<Contact> adapter;
     private ContactViewModel viewModel;
-
-    // todo currently each contact is full screen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +28,7 @@ public class ContactsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
         RecyclerView lvContacts = findViewById(R.id.lstContacts);
-        final ContactListAdapter adapter = new ContactListAdapter(this);
+        final ContactListAdapter adapter = new ContactListAdapter(this, this);
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
 
@@ -76,13 +65,20 @@ public class ContactsActivity extends AppCompatActivity {
 //            return true;
 //        });
 //
-//        //edit contact
+        //edit contact
 //        lvContacts.setOnItemClickListener((adapterView, view, i, l) -> {
 //            Intent intent = new Intent(this, UpdateContactActivity.class);
 //            intent.putExtra("id", contacts.get(i).getId());
 //            startActivity(intent);
 //        });
 
+    }
+
+    @Override
+    public void onContactClick(int position) {
+        //contacts.get(position); //the clicked contact
+        Intent i = new Intent(this, ChatActivity.class);
+        startActivity(i);
     }
 
 //    @Override

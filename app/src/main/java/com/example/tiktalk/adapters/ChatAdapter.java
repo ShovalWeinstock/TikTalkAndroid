@@ -5,13 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.tiktalk.Message;
 import com.example.tiktalk.R;
-
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder>{
@@ -19,19 +16,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public static final int SENT_BY_ME = 1;
     public static final int SENT_BY_OTHER = 2;
 
-
-    class ChatViewHolder extends RecyclerView.ViewHolder {
+    class ChatViewHolder extends RecyclerView.ViewHolder{
         private final TextView content;
         private final TextView created;
-        private boolean sent;
-
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.content = itemView.findViewById(R.id.);
-            this.lastMsg = itemView.findViewById(R.id.lastMsg);
-            this.date = itemView.findViewById(R.id.lastMsgTime);
-            this.sent = true;
+            this.content = itemView.findViewById(R.id.message_content);
+            this.created = itemView.findViewById(R.id.msg_created);
         }
     }
 
@@ -44,10 +36,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public ChatAdapter.ChatViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView;
         if(viewType == SENT_BY_ME) {
-            itemView = mInflater.inflate(R.layout.activity_chat, parent, false); //todo sentByME view
+            itemView = mInflater.inflate(R.layout.sent_by_me_layout, parent, false);
         }
         else {
-            itemView = mInflater.inflate(R.layout.activity_chat, parent, false); //todo sentByOTHER view
+            itemView = mInflater.inflate(R.layout.sent_by_other_layout, parent, false);
         }
         return new ChatAdapter.ChatViewHolder(itemView);
     }
@@ -56,12 +48,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     public void onBindViewHolder(ChatAdapter.ChatViewHolder holder, int position) {
         if(chat != null) {
             final Message current = chat.get(position);
-            holder.contactNickname.setText(current.getContent());
-            holder.lastMsg.setText(current.getCreated());
+            holder.content.setText(current.getContent());
+            holder.created.setText(current.getCreated());
         }
     }
 
-    public void setContacts(List<Message> s) {
+    @Override
+    public int getItemViewType(int position) {
+        if(chat.get(position).isSent()) {
+            return SENT_BY_ME;
+        }
+        return SENT_BY_OTHER;
+    }
+
+    public void setChat(List<Message> s) {
         chat = s;
         notifyDataSetChanged();
     }
@@ -73,8 +73,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return 0;
     }
 
-    public List<Message> setContacts() {
+    public List<Message> getChat() {
         return chat;
     }
-
 }
