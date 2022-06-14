@@ -28,8 +28,8 @@ public class ContactAPI {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
 
-    public ContactAPI(ContactDao dao) {
-//        this.contactsListData = contactsListData;
+    public ContactAPI(MutableLiveData<List<Contact>> contactsListData, ContactDao dao) {
+        this.contactsListData = contactsListData;
         this.dao = dao;
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
@@ -50,7 +50,12 @@ public class ContactAPI {
                     dao.clear();
                     dao.insertList(response.body());
                     List<Contact> a = dao.index();
-//                    contactsListData.postValue(dao.index());
+                     try {
+                         Thread.sleep(10000);
+                     } catch (InterruptedException e) {
+                         e.printStackTrace();
+                     }
+                    contactsListData.postValue(dao.index());
                 }).start();
             }
 

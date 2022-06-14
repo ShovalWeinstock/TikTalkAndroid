@@ -44,7 +44,7 @@ class ContactListData extends MutableLiveData<List<Contact>> {
                 e.printStackTrace();
             }
             // not local database
-            api.get();
+//            api.get();
         }).start();
     }
 }

@@ -33,8 +33,8 @@ public class ContactRepository {
     public ContactRepository() {
         db = AppDB.getDatabase(MyApplication.context);
         contactDao = db.contactDao();
-        api = new ContactAPI(contactDao);
         contactListData = new ContactListData(contactDao,api, db);
+        api = new ContactAPI(contactListData, contactDao);
         //api = new ContactAPI(); // no dao
     }
 
