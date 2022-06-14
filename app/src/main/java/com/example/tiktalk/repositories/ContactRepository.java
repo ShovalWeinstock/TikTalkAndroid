@@ -1,15 +1,12 @@
 package com.example.tiktalk.repositories;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.tiktalk.AppDB;
 import com.example.tiktalk.ContactDao;
-import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.api.ContactAPI;
 import com.example.tiktalk.models.Contact;
-import com.example.tiktalk.models.Message;
 
 import java.util.List;
 
@@ -39,6 +36,7 @@ public class ContactRepository {
     }
 
     public LiveData<List<Contact>> getAll() {
+        api.get();
         return contactListData;
     }
 //.getValue().get(contactListData.getValue().indexOf(LoggedInUser.currentContact.getId())).getChatWithContact()

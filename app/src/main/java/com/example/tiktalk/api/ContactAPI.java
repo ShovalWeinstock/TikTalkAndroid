@@ -2,11 +2,11 @@ package com.example.tiktalk.api;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.ContactDao;
 import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
+import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.Message;
 
 import java.util.List;
@@ -16,8 +16,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
 
 public class ContactAPI {
     // contactsListData is the contacts local database
@@ -55,6 +53,7 @@ public class ContactAPI {
                      } catch (InterruptedException e) {
                          e.printStackTrace();
                      }
+                     List<Contact> l = dao.index();
                     contactsListData.postValue(dao.index());
                 }).start();
             }
