@@ -1,8 +1,7 @@
-package com.example.tiktalk;
+package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,11 +26,11 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+        adapter = new ContactListAdapter(this, this);
 
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
         RecyclerView lvContacts = findViewById(R.id.lstContacts);
-        ContactListAdapter adapter = new ContactListAdapter(this, this);
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
 

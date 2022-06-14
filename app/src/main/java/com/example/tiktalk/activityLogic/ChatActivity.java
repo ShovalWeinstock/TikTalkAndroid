@@ -1,12 +1,10 @@
-package com.example.tiktalk;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+package com.example.tiktalk.activityLogic;
 
 import android.os.Bundle;
 
-import com.example.tiktalk.adapters.ContactListAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tiktalk.R;
 import com.example.tiktalk.viewModels.ContactViewModel;
 
 public class ChatActivity extends AppCompatActivity {
