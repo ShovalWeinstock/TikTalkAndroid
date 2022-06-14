@@ -14,9 +14,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lstContacts"
+            android:background="#E8E8E8"
+            android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/darker_gray" />
+            android:layout_height="match_parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
