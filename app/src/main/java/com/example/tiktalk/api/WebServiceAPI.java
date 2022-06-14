@@ -1,6 +1,7 @@
 package com.example.tiktalk.api;
 
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.Message;
 import com.example.tiktalk.models.User;
 
 import java.util.List;
@@ -30,10 +31,10 @@ public interface WebServiceAPI {
     Call<List<Contact>> getContacts(@Query("user") String id);
 
     @GET("contacts/{contact}/messages?user={id}")
-    Call<List<Contact>> getChat(@Path("id") String id, @Path("contact") String contact);
+    Call<List<Message>> getChat(@Query("user") String id, @Path("contact") String contact);
 
     @POST("contacts/{contact}/messages?user={id}")
-    Call<Void> addMsg(@Path("id") String id, @Path("contact") String contact, @Body String content);
+    Call<Void> addMsg(@Query("user") String id, @Path("contact") String contact, @Body String content);
 
     @POST("contacts")
     Call<Void> addContact(@Query("user") String userId,

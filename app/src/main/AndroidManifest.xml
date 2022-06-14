@@ -30,9 +30,6 @@
         </activity>
 
         <activity
-            android:name=".activityLogic.UpdateContactActivity"
-            android:exported="true"/>
-        <activity
             android:name=".Settings"
             android:exported="false" />
         <activity

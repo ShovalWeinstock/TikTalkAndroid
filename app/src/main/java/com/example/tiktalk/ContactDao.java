@@ -7,6 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.Message;
 
 import java.util.List;
 
@@ -21,6 +22,12 @@ public interface ContactDao {
 
     @Query("DELETE FROM contact")
     void clear();
+
+//    @Query("INSERT :chat TO contacts.")
+//    void addChatToContact(List<Message> chat, String contactId) {
+//
+//
+//    }
 
     @Insert
     void insertList(List<Contact> list);

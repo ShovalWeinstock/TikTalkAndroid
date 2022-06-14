@@ -7,6 +7,7 @@ import com.example.tiktalk.ContactDao;
 import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
+import com.example.tiktalk.models.Message;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public class ContactAPI {
     // contactsListData is the contacts local database
@@ -25,8 +28,8 @@ public class ContactAPI {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
 
-    public ContactAPI(MutableLiveData<List<Contact>> contactsListData, ContactDao dao) {
-        this.contactsListData = contactsListData;
+    public ContactAPI(ContactDao dao) {
+//        this.contactsListData = contactsListData;
         this.dao = dao;
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
@@ -41,12 +44,13 @@ public class ContactAPI {
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                List<Contact> Contacts =  response.body();//todo delete
+               // List<Contact> Contacts =  response.body();//todo delete
 //                contacts.setValue(response.body());
                  new Thread(() -> {
                     dao.clear();
                     dao.insertList(response.body());
-                    contactsListData.postValue(dao.index());
+                    List<Contact> a = dao.index();
+//                    contactsListData.postValue(dao.index());
                 }).start();
             }
 
@@ -72,6 +76,30 @@ public class ContactAPI {
             public void onFailure(Call<Void> call, Throwable t) {}
         });
     }
+
+//    @GET("contacts/{contact}/messages?user={id}")
+//    Call<List<Contact>> getChat(@Path("id") String id, @Path("contact") String contact);
+
+    public void getChat() {
+        Call<List<Message>> call = webServiceAPI.getChat(LoggedInUser.username, LoggedInUser.currentContact.getId());
+        call.enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                LoggedInUser.currentContact.setChatWithContact(response.body());  //todo delete
+//                contacts.setValue(response.body());
+//                new Thread(() -> {
+//                    //dao.clear();
+//                    //dao.insertList(response.body());
+//                    //contactsListData.postValue(dao.index());
+//                }).start();
+            }
+
+            @Override
+            public void onFailure(Call<List<Message>> call, Throwable t) {}
+        });
+    }
+
+
     public void update(Contact contact) { // todo implement
     }
 

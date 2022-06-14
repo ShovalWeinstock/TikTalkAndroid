@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.R;
 import com.example.tiktalk.adapters.ContactListAdapter;
 import com.example.tiktalk.models.Contact;
@@ -82,7 +83,8 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     }
     @Override
     public void onContactClick(int position) {
-        //contacts.get(position); //the clicked contact
+        Contact x = contacts.get(position);
+        LoggedInUser.currentContact = contacts.get(position); //the clicked contact
         Intent i = new Intent(this, ChatActivity.class);
         startActivity(i);
     }

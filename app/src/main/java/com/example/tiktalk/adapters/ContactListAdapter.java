@@ -5,13 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.tiktalk.R;
 import com.example.tiktalk.models.Contact;
-
 import java.util.List;
 
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ContactViewHolder> {
@@ -38,7 +35,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             final Contact current = contacts.get(position);
             holder.contactNickname.setText(current.getName());
             holder.lastMsg.setText(current.getLast());
-            holder.date.setText(current.getLastDate());
+            holder.date.setText(current.getLastdate());
         }
     }
 
@@ -57,8 +54,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     public List<Contact> getContacts() {
         return contacts;
     }
-
-
+    
 
     class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView contactNickname;
