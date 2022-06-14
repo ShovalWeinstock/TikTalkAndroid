@@ -1,7 +1,8 @@
-package com.example.tiktalk.activityLogic;
+package com.example.tiktalk;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,12 +18,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends AppCompatActivity implements ContactListAdapter.onContactListener{
     private List<Contact> contacts;
     private ContactListAdapter adapter;
     private ContactViewModel viewModel;
-
-    // todo currently each contact is full screen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class ContactsActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
         RecyclerView lvContacts = findViewById(R.id.lstContacts);
-        adapter = new ContactListAdapter(this);
+        ContactListAdapter adapter = new ContactListAdapter(this, this);
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
 
@@ -82,4 +81,19 @@ public class ContactsActivity extends AppCompatActivity {
 //            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
     }
+    @Override
+    public void onContactClick(int position) {
+        //contacts.get(position); //the clicked contact
+        Intent i = new Intent(this, ChatActivity.class);
+        startActivity(i);
+    }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        contacts.clear();
+//        //recreate the contact list
+//        contacts.addAll(contactDao.index());
+//        adapter.notifyDataSetChanged();
+//    }
 }

@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#617a74"
+            android:textColor="#deedd5"
             android:text="@string/update" />
 
     </LinearLayout>

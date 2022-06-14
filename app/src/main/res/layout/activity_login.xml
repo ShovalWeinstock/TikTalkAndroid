@@ -78,7 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="#617a74"
-            android:text="@string/login_button" />
+            android:text="@string/login_button"
+            android:textColor="#deedd5"/>
 
         <TextView
             android:id="@+id/login_error"
