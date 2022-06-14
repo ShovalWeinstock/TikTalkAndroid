@@ -1,15 +1,18 @@
-package com.example.tiktalk;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Login extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.tiktalk.LoggedInUser;
+import com.example.tiktalk.R;
+
+
+public class LoginActivity extends AppCompatActivity {
 
     EditText et_username, et_password;
     Button login_btn;
@@ -35,7 +38,8 @@ public class Login extends AppCompatActivity {
             // if the data is valid - login to user
             if(check) {
                 login_error.setText("");
-                Intent i = new Intent(this, Registration.class); //todo change "Registration" to contacts list
+                LoggedInUser.setLoggedInUser(username, password);// todo get nickname instead of password
+                Intent i = new Intent(this, ContactsActivity.class);
                 startActivity(i);
             }
             // otherwise - show error
@@ -47,13 +51,13 @@ public class Login extends AppCompatActivity {
         // go to registration page
         TextView click_to_register = findViewById(R.id.click_to_register);
         click_to_register.setOnClickListener(v -> {
-            Intent i = new Intent(this, Registration.class);
+            Intent i = new Intent(this, RegistrationActivity.class);
             startActivity(i);
         });
     }
 
     // validate username and password
     private Boolean validate(String username, String password) {
-        return false; // todo compare with db
+        return true;
     }
 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.tiktalk.activityLogic.RegistrationActivity;
+
 public class Settings extends AppCompatActivity {
 
     EditText et_server;
@@ -29,7 +31,7 @@ public class Settings extends AppCompatActivity {
             // if the data is valid - login to user
             if(check) {
                 // todo save the changes
-                Intent i = new Intent(this, Registration.class); //todo change "Registration" to contacts list
+                Intent i = new Intent(this, RegistrationActivity.class); //todo change "Registration" to contacts list
                 startActivity(i);
             }
         });

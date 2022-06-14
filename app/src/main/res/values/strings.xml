@@ -20,5 +20,8 @@
     <string name="add_contact_btn">Add</string>
     <string name="settings_header">Settings</string>
     <string name="save">Save</string>
+    <string name="update">update</string>
+    <string name="update_contact">Update Contact</string>
+    <string name="BaseUrl">http://10.0.2.2:5051/api/</string>
 
 </resources>

@@ -1,15 +1,26 @@
-package com.example.tiktalk;
+package com.example.tiktalk.activityLogic;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-public class AddContact extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.tiktalk.AppDB;
+import com.example.tiktalk.ContactDao;
+import com.example.tiktalk.R;
+import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.viewModels.ContactViewModel;
+
+import java.util.ArrayList;
+
+
+public class AddContactActivity extends AppCompatActivity {
+
+    private AppDB db;
+    private ContactDao contactDao;
+    private ContactViewModel viewModel;
     EditText et_username, et_nickname, et_server;
     Button add_contact_btn;
 
@@ -17,6 +28,9 @@ public class AddContact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_contact);
+
+        //get the contact viewModel
+        viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
         // username and password input bars
         et_username = findViewById(R.id.addContactUsername);
@@ -33,16 +47,16 @@ public class AddContact extends AppCompatActivity {
 
             // if the data is valid - login to user
             if(check) {
-                // todo add the contact
-                Intent i = new Intent(this, Registration.class); //todo change "Registration" to contacts list
-                startActivity(i);
+                Contact contact = new Contact(username, nickname,"","", server, new ArrayList<>());
+                viewModel.add(contact);
+                finish();
             }
         });
     }
 
     // validate username and password
     private Boolean validate(String username, String server) {
-        return false; // todo compare with db
+        return true; // todo compare with db
 
     }
 }
