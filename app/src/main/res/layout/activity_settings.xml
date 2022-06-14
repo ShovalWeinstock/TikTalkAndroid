@@ -12,7 +12,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#deedd5"
+        android:background="@color/light_green"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#617a74"
-            android:textColor="#deedd5"
+            android:background="@color/dark_green"
+            android:textColor="@color/light_green"
             android:text="@string/save" />
 
     </LinearLayout>

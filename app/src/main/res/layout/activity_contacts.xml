@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activityLogic.ContactsActivity">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -26,6 +27,7 @@
         android:src="@drawable/ic_add_contact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/dark_green"
         android:contentDescription="@string/add_contact_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
