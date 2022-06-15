@@ -47,13 +47,13 @@ public class ContactAPI {
                  new Thread(() -> {
                     dao.clear();
                     dao.insertList(response.body());
-                    List<Contact> a = dao.index();
+                    List<Contact> a = dao.index(); //todo ??
                      try {
                          Thread.sleep(10000);
                      } catch (InterruptedException e) {
                          e.printStackTrace();
                      }
-                     List<Contact> l = dao.index();
+                     List<Contact> l = dao.index(); // todo ??
                     contactsListData.postValue(dao.index());
                 }).start();
             }

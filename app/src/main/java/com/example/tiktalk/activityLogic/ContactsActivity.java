@@ -16,6 +16,7 @@ import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.viewModels.ContactViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsActivity extends AppCompatActivity implements ContactListAdapter.onContactListener{
@@ -30,7 +31,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         adapter = new ContactListAdapter(this, this);
 
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
-
+        contacts = new ArrayList<Contact>();
         RecyclerView lvContacts = findViewById(R.id.lstContacts);
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
@@ -42,6 +43,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
 
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {
+            this.contacts = contacts;
             adapter.setContacts(contacts);
 //            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
@@ -83,10 +85,12 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     }
     @Override
     public void onContactClick(int position) {
-        Contact x = contacts.get(position);
-        LoggedInUser.currentContact = contacts.get(position); //the clicked contact
-        Intent i = new Intent(this, ChatActivity.class);
-        startActivity(i);
+        if(position > RecyclerView.NO_POSITION) {
+            //Contact x = contacts.get(position);
+            LoggedInUser.currentContact = contacts.get(position); //the clicked contact
+            Intent i = new Intent(this, ChatActivity.class);
+            startActivity(i);
+        }
     }
 
 //    @Override
