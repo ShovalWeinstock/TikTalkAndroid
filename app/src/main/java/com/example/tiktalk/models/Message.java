@@ -1,7 +1,7 @@
 package com.example.tiktalk.models;
 
 public class Message {
-
+    private String chatWith;
     private int id;
     private String created;
     private boolean sent;
@@ -43,5 +43,13 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getChatWith() {
+        return chatWith;
+    }
+
+    public void setChatWith(String chatWith) {
+        this.chatWith = chatWith;
     }
 }

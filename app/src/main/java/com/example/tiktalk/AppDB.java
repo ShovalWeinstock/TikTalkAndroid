@@ -10,10 +10,9 @@ import androidx.room.TypeConverters;
 import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.User;
 
-@Database(  entities = {Contact.class, User.class},
-            version = 8)
-            @TypeConverters({Contact.Converters.class}
-            )
+@Database(entities = {Contact.class, User.class}, version = 10)
+//            @TypeConverters({Contact.Converters.class}
+//            )
 
 //todo: not truly singletone - need to make everything private and add creation method
 public abstract class AppDB extends RoomDatabase {

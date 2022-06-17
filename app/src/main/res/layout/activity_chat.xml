@@ -21,12 +21,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:paddingRight="10dp"
+
+        <Button
+            android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_back" />
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/dark_green"
+            android:contentDescription="@string/send"
+            android:src="@drawable/ic_back"
+            app:backgroundTint="@color/dark_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/myCardView"

@@ -38,7 +38,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             final Contact current = contacts.get(position);
             holder.contactNickname.setText(current.getName());
             holder.lastMsg.setText(current.getLast());
-            holder.date.setText(current.getLastDate());
+            holder.date.setText(current.getLastdate());
         }
     }
 
@@ -63,7 +63,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView contactNickname;
         private final TextView lastMsg;
-        private final TextView date;
+        private final TextView date; //todo
         onContactListener onContactListener;
         //private final ImageView profilePic;
 

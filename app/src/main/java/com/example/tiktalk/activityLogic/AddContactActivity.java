@@ -13,8 +13,6 @@ import com.example.tiktalk.R;
 import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.viewModels.ContactViewModel;
 
-import java.util.ArrayList;
-
 
 public class AddContactActivity extends AppCompatActivity {
 
@@ -47,7 +45,7 @@ public class AddContactActivity extends AppCompatActivity {
 
             // if the data is valid - login to user
             if(check) {
-                Contact contact = new Contact(username, nickname,"","", server, new ArrayList<>());
+                Contact contact = new Contact(username, nickname,"","", server);
                 viewModel.add(contact);
                 finish();
             }
