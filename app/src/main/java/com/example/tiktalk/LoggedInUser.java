@@ -1,8 +1,11 @@
 package com.example.tiktalk;
 
+import com.example.tiktalk.models.Contact;
+
 public class LoggedInUser {
     public static String username;
     public static String nickname;
+    public static Contact currentContact;
     // picture
 
     public static void setLoggedInUser(String username, String nickname) {

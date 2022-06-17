@@ -6,8 +6,8 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 
-import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
+//import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+//import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -93,17 +93,17 @@ public class Contact {
                 '}';
     }
 
-    public static class Converters {
-        @TypeConverter
-        public static ArrayList<Message> fromString(String value) {
-            Type listType = new TypeToken<ArrayList<Message>>() {}.getType();
-            return new Gson().fromJson(value, listType);
-        }
-
-        @TypeConverter
-        public static String fromArrayList(ArrayList<Message> list) {
-            Gson gson = new Gson();
-            return gson.toJson(list);
-        }
-    }
+//    public static class Converters {
+//        @TypeConverter
+//        public static ArrayList<Message> fromString(String value) {
+//            Type listType = new TypeToken<ArrayList<Message>>() {}.getType();
+//            return new Gson().fromJson(value, listType);
+//        }
+//
+//        @TypeConverter
+//        public static String fromArrayList(ArrayList<Message> list) {
+//            Gson gson = new Gson();
+//            return gson.toJson(list);
+//        }
+//    }
 }
