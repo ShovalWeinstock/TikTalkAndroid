@@ -2,29 +2,37 @@ package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-
-import com.example.tiktalk.AppDB;
-import com.example.tiktalk.ContactDao;
+import android.widget.TextView;
+import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.R;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.example.tiktalk.models.Contact;
-import com.example.tiktalk.viewModels.ContactViewModel;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.example.tiktalk.adapters.ChatAdapter;
+import com.example.tiktalk.models.Message;
+import com.example.tiktalk.viewModels.MessageViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import java.util.List;
 
 
 public class ChatActivity extends AppCompatActivity {
+    private List<Message> messages;
+    private ChatAdapter adapter;
+    private MessageViewModel viewModel;
 
      // todo change
-    Button back_btn;
+    FloatingActionButton back_btn;
+    TextView contactNickname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        adapter = new ChatAdapter(this);
+
+        viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
         back_btn = findViewById(R.id.back_btn);
         // back to contacts list
@@ -33,13 +41,32 @@ public class ChatActivity extends AppCompatActivity {
             startActivity(i);
         });
 
-//    viewModel = new ViewModelProvider(this).get(ContactViewModel .class);
-//
-//    RecyclerView chat = findViewById(R.id.lstContacts);
-//    final ContactListAdapter adapter = new ContactListAdapter(this);
+        contactNickname = findViewById(R.id.contactNickname);
+        contactNickname.setText(LoggedInUser.getCurrentContact().getName());
+
+        RecyclerView lvMessages = findViewById(R.id.lstMessages);
+        lvMessages.setAdapter(adapter);
+        lvMessages.setLayoutManager(new LinearLayoutManager(this));
+
+        // todo add chat if not already did
+        // get contacts list and view it, using the adapter
+        viewModel.get().observe(this, messages -> {
+            adapter.setChat(messages);
+//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
+        });
+
+
+
+
+
+
+
+
+//    RecyclerView chat = findViewById(R.id.lstMessages);
+//    final ChatAdapter adapter = new ChatAdapter(this);
 //        lvContacts.setAdapter(adapter);
 //        lvContacts.setLayoutManager(new LinearLayoutManager(this));
-//
+
 //    // get contacts list and view it, using the adapter
 //        viewModel.get().observe(this, contacts -> {
 //        adapter.setContacts(contacts);

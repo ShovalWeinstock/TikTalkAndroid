@@ -37,7 +37,7 @@ public class ContactAPI {
 
     // get all the contacts of the logged-in user (update the given MutableLiveData object)
     public void get() {
-        Call<List<Contact>> call = webServiceAPI.getContacts(LoggedInUser.username);
+        Call<List<Contact>> call = webServiceAPI.getContacts(LoggedInUser.getUsername());
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
@@ -57,7 +57,7 @@ public class ContactAPI {
 
     public void add(Contact contact) { // todo implement
         Call<Void> call = webServiceAPI.addContact(
-                LoggedInUser.username,
+                LoggedInUser.getUsername(),
                 contact
                 );
         call.enqueue(new Callback<Void>() {

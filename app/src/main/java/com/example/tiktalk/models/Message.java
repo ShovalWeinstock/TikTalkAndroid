@@ -1,11 +1,18 @@
 package com.example.tiktalk.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Message {
-    private String chatWith;
+    @PrimaryKey(autoGenerate = false)
+    @NonNull
     private int id;
     private String created;
     private boolean sent;
     private String content;
+    private String chatWith;
 
     public Message(String created, boolean sent, String content) {
         this.created = created;

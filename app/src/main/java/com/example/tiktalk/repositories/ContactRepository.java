@@ -24,7 +24,6 @@ public class ContactRepository {
         contactDao = db.contactDao();
         contactListData = new ContactListData();
         api = new ContactAPI(contactListData, contactDao);
-        //api = new ContactAPI(); // no dao
     }
 
     class ContactListData extends MutableLiveData<List<Contact>> {
@@ -32,7 +31,6 @@ public class ContactRepository {
         public ContactListData() {
             super();
             // local database
-            //not hard coded:
             List<Contact> contacts = contactDao.index();
             setValue(contacts);
         }
