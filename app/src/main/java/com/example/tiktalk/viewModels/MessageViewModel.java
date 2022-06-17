@@ -2,9 +2,7 @@ package com.example.tiktalk.viewModels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.Message;
-import com.example.tiktalk.repositories.ContactRepository;
 import com.example.tiktalk.repositories.MessageRepository;
 
 import java.util.List;
@@ -16,7 +14,7 @@ public class MessageViewModel extends ViewModel{
 
     public MessageViewModel() {
         repository = new MessageRepository();
-        messages = repository.getAll();
+        messages = repository.getCurrentChat();
     }
 
     public LiveData<List<Message>> get() {

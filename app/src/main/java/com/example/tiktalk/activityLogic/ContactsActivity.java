@@ -61,6 +61,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         super.onResume();
         //recreate the contact list
         viewModel.get().observe(this, contacts -> {
+            this.contacts = contacts;
             adapter.setContacts(contacts);
 //            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });

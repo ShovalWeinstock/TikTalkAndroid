@@ -37,7 +37,7 @@ public class MessageAPI {
     }
 
         public void getChat() {
-        Call<List<Message>> call = webServiceAPI.getChat(LoggedInUser.getUsername(), LoggedInUser.getCurrentContact().getId());
+        Call<List<Message>> call = webServiceAPI.getChat(LoggedInUser.getCurrentContact().getId(), LoggedInUser.getUsername());
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
@@ -50,7 +50,7 @@ public class MessageAPI {
                 new Thread(() -> {
                     dao.clearByContact(contact);
                     dao.insertList(chat);
-                    messagesListData.postValue(dao.index());
+                    messagesListData.postValue(dao.getChatWithContact(LoggedInUser.getCurrentContact().getId()));
                 }).start();
             }
 

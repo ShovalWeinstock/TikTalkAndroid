@@ -29,7 +29,7 @@ public class MessageRepository {
 
         public MessageListData() {
             super();
-            // local database
+            // local chat with current contact
             List<Message> messages = messageDao.getChatWithContact(LoggedInUser.getCurrentContact().getId());
             setValue(messages);
         }
@@ -41,7 +41,7 @@ public class MessageRepository {
             db = AppDB.getDatabase(MyApplication.context);
             messageDao = db.messageDao();
             // update the mutable live data
-            messageListData.postValue(messageDao.index());
+            messageListData.postValue(messageDao.getChatWithContact(LoggedInUser.getCurrentContact().getId()));
             new Thread(() -> {
                 //sleep for emphasis the communication with the server
                 try {
@@ -55,13 +55,13 @@ public class MessageRepository {
         }
     }
 
-    public LiveData<List<Message>> getAll() {
+    public LiveData<List<Message>> getCurrentChat() {
         return messageListData;
     }
 
     public void add(final Message message) {
         messageDao.insert(message);
-        //api.add(message); // todo add to not local db
+//        api.add(message); // todo add to not local db
     }
 //    public void update(final Message message) {
 //        messageDao.update(message);
