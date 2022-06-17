@@ -41,7 +41,7 @@ public class ContactAPI {
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                //List<Contact> Contacts =  response.body();//todo delete
+                List<Contact> Contacts =  response.body();//todo delete
 //                contacts.setValue(response.body());
                  new Thread(() -> {
                     dao.clear();
