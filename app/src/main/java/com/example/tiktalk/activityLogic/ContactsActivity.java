@@ -99,4 +99,5 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
 //        contacts.addAll(contactDao.index());
 //        adapter.notifyDataSetChanged();
 //    }
+
 }
