@@ -21,9 +21,11 @@ public class ContactViewModel extends ViewModel {
     public LiveData<List<Contact>> get() {
         return contacts;
     }
-    public Contact getSpesific(String id) {
+
+    public Contact getSpecific(String id) {
         return contacts.getValue().get(contacts.getValue().indexOf(id));
     }
+
     public void add(Contact contact) {
         repository.add(contact);
     }

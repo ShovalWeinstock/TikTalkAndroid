@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.R;
 import com.example.tiktalk.adapters.ContactListAdapter;
 import com.example.tiktalk.models.Contact;
@@ -26,6 +27,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
         adapter = new ContactListAdapter(this, this);
 
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
@@ -41,34 +43,17 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
 
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {
+            this.contacts = contacts;
             adapter.setContacts(contacts);
 //            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
 
-
-        FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         //add contact
+        FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
             Intent i = new Intent(this, AddContactActivity.class);
             startActivity(i);
         });
-
-//        //delete contact
-//        lvContacts.setOnItemLongClickListener((adapterView, view, i, l) -> {
-//            Contact contact = contacts.remove(i);
-//            contactDao.delete(contact);
-//            adapter.notifyDataSetChanged();
-//            return true;
-//        });
-//
-        //edit contact
-//        lvContacts.setOnItemClickListener((adapterView, view, i, l) -> {
-//            Intent intent = new Intent(this, UpdateContactActivity.class);
-////            intent.putExtra("id", contacts.get(i).getId());
-//            intent.putExtra("id", viewModel.get().getValue().get(i).getId());
-//            startActivity(intent);
-//        });
-
     }
 
     @Override
@@ -76,23 +61,17 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         super.onResume();
         //recreate the contact list
         viewModel.get().observe(this, contacts -> {
+            this.contacts = contacts;
             adapter.setContacts(contacts);
 //            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
     }
     @Override
     public void onContactClick(int position) {
-        //contacts.get(position); //the clicked contact
-        Intent i = new Intent(this, ChatActivity.class);
-        startActivity(i);
+        if(position > RecyclerView.NO_POSITION) {
+            LoggedInUser.setCurrentContact(contacts.get(position)); ; //the clicked contact
+            Intent i = new Intent(this, ChatActivity.class);
+            startActivity(i);
+        }
     }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        contacts.clear();
-//        //recreate the contact list
-//        contacts.addAll(contactDao.index());
-//        adapter.notifyDataSetChanged();
-//    }
 }

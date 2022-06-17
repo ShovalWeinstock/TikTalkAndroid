@@ -39,6 +39,7 @@
                 android:scaleX="2"
                 android:scaleY="2"
                 app:srcCompat="@drawable/ic_bubble"
+                tools:ignore="ImageContrastCheck"
                 tools:layout_editor_absoluteX="52dp"
                 tools:layout_editor_absoluteY="625dp" />
 
@@ -79,7 +80,7 @@
             android:layout_gravity="center"
             android:background="@color/dark_green"
             android:text="@string/login_button"
-            android:textColor="@color/light_green"/>
+            android:textColor="#FFFDE7" />
 
         <TextView
             android:id="@+id/login_error"
@@ -109,10 +110,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textStyle="bold|italic"
-                android:text="@string/not_registered2"
                 android:clickable="true"
-                android:focusable="true" />
+                android:focusable="true"
+                android:text="@string/not_registered2"
+                android:textStyle="bold|italic"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="wrap_content"

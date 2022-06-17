@@ -31,7 +31,7 @@ public class UpdateContactActivity extends AppCompatActivity {
         // nickname bar with the current nickname
         et_nickname = findViewById(R.id.et_updateContactNickname);
         String id = getIntent().getExtras().getString("id");
-        Contact contact = viewModel.getSpesific(id);
+        Contact contact = viewModel.getSpecific(id);
         et_nickname.setText(contact.getName());
 
         //save new name into the db
