@@ -8,7 +8,7 @@ import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.Message;
 import com.example.tiktalk.models.User;
 
-@Database(entities = {Contact.class, User.class, Message.class}, version = 15)
+@Database(entities = {Contact.class, User.class, Message.class}, version = 16)
 //            @TypeConverters({Contact.Converters.class}
 //            )
 

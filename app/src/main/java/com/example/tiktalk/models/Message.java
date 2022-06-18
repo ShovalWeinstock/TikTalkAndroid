@@ -4,15 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(primaryKeys = {"id","chatWith"} )
 public class Message {
-    @PrimaryKey(autoGenerate = false)
-    @NonNull
+    //@PrimaryKey(autoGenerate = false)
     private int id;
+    @NonNull
+    private String chatWith;
     private String created;
     private boolean sent;
     private String content;
-    private String chatWith;
+    //@PrimaryKey(autoGenerate = false)
+
 
     public Message(String created, boolean sent, String content) {
         this.created = created;
