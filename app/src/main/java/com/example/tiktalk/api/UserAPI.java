@@ -1,9 +1,17 @@
 package com.example.tiktalk.api;
 
+import android.content.Intent;
+import android.widget.TextView;
+import android.content.Intent;
+import android.widget.TextView;
+
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
+import com.example.tiktalk.activityLogic.ContactsActivity;
+import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.User;
 import com.example.tiktalk.UserDao;
 
@@ -17,51 +25,33 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class UserAPI {
-    private MutableLiveData<List<User>> usersListData;
-    private UserDao dao;
-    private boolean userExsits;
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
 
-        public UserAPI() {
+    public UserAPI() {
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
-        this.userExsits = false;
     }
 
-//    public UserAPI(MutableLiveData<List<User>> usersListData, UserDao dao) {
-//        this.usersListData = usersListData;
-//        this.dao = dao;
-//
-//        retrofit = new Retrofit.Builder()
-//                .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        webServiceAPI = retrofit.create(WebServiceAPI.class);
-//    }
-
-
-    public void getUser(String id) {
+    public void login(String id, String password, TextView login_error) {
         Call<User> call = webServiceAPI.getUser(id);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                //user = response.body();
-                User u = response.body(); //todo delete
-                int i = 5;
-                if(u != null){
-                    userExsits = true;
+                User user = response.body();
+                if (user != null && user.getPassword().equals(password)) {
+                    login_error.setText("");
+                    LoggedInUser.setLoggedInUser(id, user.getName());
+                    Intent i = new Intent(MyApplication.context, ContactsActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    MyApplication.context.startActivity(i);
+                } else {
+                    login_error.setText(R.string.login_error_msg);
                 }
             }
-//                new Thread(() -> {
-//                    dao.clear();
-//                    dao.insertList(response.body());
-//                    postListData.postValue(dao.get());
-//                }).start();
-//            }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
@@ -69,25 +59,55 @@ public class UserAPI {
         });
     }
 
-    public boolean isUserExsits() {return userExsits;}
 
-    public void addUser(User user) {
-        Call<Void> call = webServiceAPI.createUser(user);
-        call.enqueue(new Callback<Void>() {
+    public void register(User user, TextView usernameExists) {
+        Call<User> call = webServiceAPI.getUser(user.getId());
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                int i = 5;
+            public void onResponse(Call<User> call, Response<User> response) {
+//                User u = response.body();
+//                if (u != null) {
+//                    usernameExists.setError("Username already exists");
+//
+//                }
+                //else {
+                    //addUser(user); // todo ok?
+                    LoggedInUser.setLoggedInUser(user.getId(), user.getName());
+                    Intent i = new Intent(MyApplication.context, ContactsActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    MyApplication.context.startActivity(i);
+                //}
             }
-//                new Thread(() -> {
-//                    dao.clear();
-//                    dao.insertList(response.body());
-//                    postListData.postValue(dao.get());
-//                }).start();
-//            }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
             }
         });
     }
+
+
+
+
+    public void addUserToServer(User user, TextView usernameExists) { // todo implement
+        Call<Void> call = webServiceAPI.addUser(user);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                response.isSuccessful();// todo:do something
+                LoggedInUser.setLoggedInUser(user.getId(), user.getName());
+                Intent i = new Intent(MyApplication.context, ContactsActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MyApplication.context.startActivity(i);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();// todo:do something
+
+            }
+        });
+    }
+
+
+
 }

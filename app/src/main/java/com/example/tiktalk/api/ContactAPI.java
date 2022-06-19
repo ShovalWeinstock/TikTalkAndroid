@@ -72,6 +72,7 @@ public class ContactAPI {
             public void onFailure(Call<Void> call, Throwable t) {}
         });
     }
+
     public void update(Contact contact) { // todo implement
     }
 

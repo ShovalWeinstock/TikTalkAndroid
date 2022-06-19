@@ -28,13 +28,6 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        // DB todo ?
-//        AppDB db = Room.databaseBuilder(getApplicationContext(), AppDB.class, "UsersDB")
-//                .allowMainThreadQueries()
-//                .build();
-//        UserDao userDao = db.userDao();
-
-        // fields
         et_username = findViewById(R.id.registrationUsername);
         et_nickname = findViewById(R.id.registrationNickname);
         et_password = findViewById(R.id.registrationPassword);
@@ -54,16 +47,13 @@ public class RegistrationActivity extends AppCompatActivity {
             // if the data is valid - register the user and login
             Boolean valid = validate(username, password, confirmation);
             if(valid) {
-                // todo register the user
                 //User user = new User(username, nickname, profilePic, password);
                 User user = new User(username, nickname, password);
-                //userDao.insert(user); // todo ?
                 UserAPI api = new UserAPI();
-                api.addUser(user);
-
-                LoggedInUser.setLoggedInUser(username, nickname); //todo ?
-                Intent i = new Intent(this, ContactsActivity.class);
-                startActivity(i);
+                api.addUserToServer(user, et_username);
+//                LoggedInUser.setLoggedInUser(username, nickname); // todo
+//                Intent i = new Intent(this, ContactsActivity.class);
+//                startActivity(i);
             }
         });
 
@@ -77,7 +67,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
 
 
-    // validate the registration data
+    // validate the registration data (except if username exists)
     private Boolean validate(String username, String password, String confirmation) {
         // validate username
         if(username.length() == 0) {
@@ -85,11 +75,11 @@ public class RegistrationActivity extends AppCompatActivity {
             et_username.setError("Username is required");
             return false;
         }
-        else if(username.equals("exists")) { //todo check if username exists
-            et_username.requestFocus();
-            et_username.setError("Username already exists");
-            return false;
-        }
+//        else if(username.equals("exists")) {
+//            et_username.requestFocus();
+//            et_username.setError("Username already exists");
+//            return false;
+//        }
         // validate password
         if(password.length() == 0) {
             et_password.requestFocus();

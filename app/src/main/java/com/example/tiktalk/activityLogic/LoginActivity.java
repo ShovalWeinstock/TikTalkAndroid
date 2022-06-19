@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.R;
+import com.example.tiktalk.api.UserAPI;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,19 +34,20 @@ public class LoginActivity extends AppCompatActivity {
             // get username and password, and validate them
             String username = et_username.getText().toString();
             String password = et_password.getText().toString();
-            Boolean check = validate(username, password);
+            UserAPI api = new UserAPI();
+            api.login(username, password, login_error);
 
             // if the data is valid - login to user
-            if(check) {
-                login_error.setText("");
-                LoggedInUser.setLoggedInUser(username, password);// todo get nickname instead of password
-                Intent i = new Intent(this, ContactsActivity.class);
-                startActivity(i);
-            }
+//            if(check) {
+//                login_error.setText("");
+//                LoggedInUser.setLoggedInUser(username, password);// todo get nickname instead of password
+//                Intent i = new Intent(this, ContactsActivity.class);
+//                startActivity(i);
+//            }
             // otherwise - show error
-            else {
-                login_error.setText(R.string.login_error_msg);
-            }
+//            else {
+//                login_error.setText(R.string.login_error_msg);
+//            }
         });
 
         // go to registration page
@@ -57,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // validate username and password
-    private Boolean validate(String username, String password) {
-        return true;
-    }
+//    private Boolean validate(String username, String password) {
+//        return true;
+//    }
 }
