@@ -47,13 +47,9 @@ public class RegistrationActivity extends AppCompatActivity {
             // if the data is valid - register the user and login
             Boolean valid = validate(username, password, confirmation);
             if(valid) {
-                //User user = new User(username, nickname, profilePic, password);
                 User user = new User(username, nickname, password);
                 UserAPI api = new UserAPI();
-                api.addUserToServer(user, et_username);
-//                LoggedInUser.setLoggedInUser(username, nickname); // todo
-//                Intent i = new Intent(this, ContactsActivity.class);
-//                startActivity(i);
+                api.register(user, et_username);
             }
         });
 
@@ -75,11 +71,6 @@ public class RegistrationActivity extends AppCompatActivity {
             et_username.setError("Username is required");
             return false;
         }
-//        else if(username.equals("exists")) {
-//            et_username.requestFocus();
-//            et_username.setError("Username already exists");
-//            return false;
-//        }
         // validate password
         if(password.length() == 0) {
             et_password.requestFocus();

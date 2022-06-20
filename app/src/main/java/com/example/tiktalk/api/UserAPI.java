@@ -65,18 +65,18 @@ public class UserAPI {
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-//                User u = response.body();
-//                if (u != null) {
-//                    usernameExists.setError("Username already exists");
-//
-//                }
-                //else {
-                    //addUser(user); // todo ok?
+                User u = response.body();
+                if (u != null) {
+                    usernameExists.setError("Username already exists");
+
+                }
+                else {
+                    addUserToServer(user); // todo ok?
                     LoggedInUser.setLoggedInUser(user.getId(), user.getName());
                     Intent i = new Intent(MyApplication.context, ContactsActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     MyApplication.context.startActivity(i);
-                //}
+                }
             }
 
             @Override
@@ -85,25 +85,18 @@ public class UserAPI {
         });
     }
 
-
-
-
-    public void addUserToServer(User user, TextView usernameExists) { // todo implement
+    public void addUserToServer(User user) {
         Call<Void> call = webServiceAPI.addUser(user);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                response.isSuccessful();// todo:do something
-                LoggedInUser.setLoggedInUser(user.getId(), user.getName());
-                Intent i = new Intent(MyApplication.context, ContactsActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                MyApplication.context.startActivity(i);
+//                if(!response.isSuccessful()) {
+//
+//                };
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                t.printStackTrace();// todo:do something
-
             }
         });
     }
