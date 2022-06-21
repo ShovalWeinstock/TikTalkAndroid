@@ -2,6 +2,7 @@ package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.example.tiktalk.LoggedInUser;
@@ -63,10 +64,13 @@ public class ChatActivity extends AppCompatActivity {
         btnSend.setOnClickListener(v -> {
             // get message
             String content = typingArea.getText().toString();
+            typingArea.setText("");
             Message newMsg = new Message("", true, content);
             newMsg.setChatWith(LoggedInUser.getCurrentContact().getId());
             //add message to me
             viewModel.add(newMsg);
+            viewModel.reload();
+
             // todo add message to other
         });
 

@@ -43,12 +43,12 @@ public class MessageRepository {
             // update the mutable live data
             messageListData.postValue(messageDao.getChatWithContact(LoggedInUser.getCurrentContact().getId()));
             new Thread(() -> {
-                //sleep for emphasis the communication with the server
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                //sleep for emphasis the communication with the server
+//                try {
+//                    Thread.sleep(10000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 // not local database
                 api.getChat(); // todo deleted
             }).start();
@@ -62,6 +62,7 @@ public class MessageRepository {
     public void add(final Message message) {
         //messageDao.insert(message);
         api.addMessageToServer(message); // todo add to not local db
+        //api.getChat();
     }
 //    public void update(final Message message) {
 //        messageDao.update(message);
