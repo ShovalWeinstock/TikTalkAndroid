@@ -2,6 +2,7 @@ package com.example.tiktalk.activityLogic;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.R;
@@ -15,15 +16,16 @@ import com.example.tiktalk.viewModels.MessageViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
-
 public class ChatActivity extends AppCompatActivity {
-    private List<Message> messages;
+    //private List<Message> messages;
     private ChatAdapter adapter;
     private MessageViewModel viewModel;
 
-     // todo change
+    // todo change
     FloatingActionButton back_btn;
     TextView contactNickname;
+    EditText typingArea;
+    FloatingActionButton btnSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,18 @@ public class ChatActivity extends AppCompatActivity {
 //            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
 
+        typingArea = findViewById(R.id.typingArea);
 
+        btnSend = findViewById(R.id.btnSend);
+        btnSend.setOnClickListener(v -> {
+            // get message
+            String content = typingArea.getText().toString();
+            Message newMsg = new Message("", true, content);
+            newMsg.setChatWith(LoggedInUser.getCurrentContact().getId());
+            //add message to me
+            viewModel.add(newMsg);
+            // todo add message to other
+        });
 
 
 

@@ -60,8 +60,8 @@ public class MessageRepository {
     }
 
     public void add(final Message message) {
-        messageDao.insert(message);
-//        api.add(message); // todo add to not local db
+        //messageDao.insert(message);
+        api.addMessageToServer(message); // todo add to not local db
     }
 //    public void update(final Message message) {
 //        messageDao.update(message);

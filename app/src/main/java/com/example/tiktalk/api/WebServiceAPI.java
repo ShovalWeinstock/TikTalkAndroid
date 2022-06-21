@@ -34,7 +34,7 @@ public interface WebServiceAPI {
     Call<List<Message>> getChat(@Path("contactId") String contact, @Query("user") String id);
 
     @POST("contacts/{contact}/messages")
-    Call<Void> addMsg(@Path("contact") String contact, @Body String content, @Query("user") String id);
+    Call<Void> addMsg(@Path(value = "contact", encoded = true) String contact, @Query("user") String id, @Body String content);
 
     @POST("contacts")
     Call<Void> addContact(@Query("user") String userId,

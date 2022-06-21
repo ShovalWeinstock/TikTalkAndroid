@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey;
 
 @Entity(primaryKeys = {"id","chatWith"} )
 public class Message {
-    //@PrimaryKey(autoGenerate = false)
     private int id;
     @NonNull
     private String chatWith;

@@ -1,5 +1,7 @@
 package com.example.tiktalk.api;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.tiktalk.LoggedInUser;
@@ -7,6 +9,7 @@ import com.example.tiktalk.MessageDao;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
 import com.example.tiktalk.models.Message;
+import com.example.tiktalk.models.User;
 
 import java.util.List;
 
@@ -54,6 +57,8 @@ public class MessageAPI {
                 }).start();
             }
 
+
+
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {}
         });
@@ -61,7 +66,24 @@ public class MessageAPI {
 
 
     // todo add
+    public void addMessageToServer(Message newMsg) {
+        Call<Void> call = webServiceAPI.addMsg(newMsg.getChatWith(),
+                                               LoggedInUser.getUsername(), newMsg.getContent());
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                  Log.i("h","h");
+//                if(!response.isSuccessful()) {
+//
+//                };
+            }
 
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            Log.i("h","h");
+            }
+        });
+    }
 
 
 
