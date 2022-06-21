@@ -64,80 +64,18 @@ public class MessageAPI {
         });
     }
 
-
-    // todo add
     public void addMessageToServer(Message newMsg) {
         Call<Void> call = webServiceAPI.addMsg(newMsg.getChatWith(),
                                                LoggedInUser.getUsername(), newMsg.getContent());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                  Log.i("h","h");
-//                if(!response.isSuccessful()) {
-//
-//                };
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-            Log.i("h","h");
+
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // get all the contacts of the logged-in user (update the given MutableLiveData object)
-//    public void get() {
-//        Call<List<Contact>> call = webServiceAPI.getContacts(LoggedInUser.username);
-//        call.enqueue(new Callback<List<Contact>>() {
-//            @Override
-//            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-//                //List<Contact> Contacts =  response.body();//todo delete
-////                contacts.setValue(response.body());
-//                new Thread(() -> {
-//                    dao.clear();
-//                    dao.insertList(response.body());
-//                    contactsListData.postValue(dao.index());
-//                }).start();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Contact>> call, Throwable t) {}
-//        });
-//    }
-
-//    public void add(Contact contact) { // todo implement
-//        Call<Void> call = webServiceAPI.addContact(
-//                LoggedInUser.username,
-//                contact
-//        );
-//        call.enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-////                List<Contact> Contacts =  response.body();//todo delete
-////                contacts.setValue(response.body());
-//                response.isSuccessful();// todo:do something
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {}
-//        });
-//    }
-//    public void update(Contact contact) { // todo implement
-//    }
-//
-//    public void delete(Contact contact) { // todo implement
-//    }
-
 }

@@ -58,12 +58,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         return contacts;
     }
 
-
-
     class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private final TextView contactNickname;
         private final TextView lastMsg;
-        private final TextView date; //todo
+        private final TextView date;
         onContactListener onContactListener;
         //private final ImageView profilePic;
 

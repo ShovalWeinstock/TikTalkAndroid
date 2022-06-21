@@ -50,7 +50,7 @@ public class MessageRepository {
 //                    e.printStackTrace();
 //                }
                 // not local database
-                api.getChat(); // todo deleted
+                api.getChat();
             }).start();
         }
     }
@@ -60,7 +60,6 @@ public class MessageRepository {
     }
 
     public void add(final Message message) {
-        //messageDao.insert(message);
         api.addMessageToServer(message); // todo add to not local db
         //api.getChat();
     }

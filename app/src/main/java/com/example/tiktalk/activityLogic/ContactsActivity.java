@@ -45,7 +45,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         viewModel.get().observe(this, contacts -> {
             this.contacts = contacts;
             adapter.setContacts(contacts);
-//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
 
         //add contact
@@ -63,7 +62,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         viewModel.get().observe(this, contacts -> {
             this.contacts = contacts;
             adapter.setContacts(contacts);
-//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
     }
     @Override
