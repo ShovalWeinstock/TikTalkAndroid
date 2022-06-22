@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.tiktalk.AppDB;
 import com.example.tiktalk.ContactDao;
 import com.example.tiktalk.R;
+import com.example.tiktalk.api.ToOther;
 import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.viewModels.ContactViewModel;
 
@@ -47,6 +48,8 @@ public class AddContactActivity extends AppCompatActivity {
             if(check) {
                 Contact contact = new Contact(username, nickname,"","", server);
                 viewModel.add(contact);
+                ToOther toOther = new ToOther(server);
+                toOther.addContactToOther(username);
                 finish();
             }
         });

@@ -1,7 +1,9 @@
 package com.example.tiktalk.api;
 
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.Invitation;
 import com.example.tiktalk.models.Message;
+import com.example.tiktalk.models.Transfer;
 import com.example.tiktalk.models.User;
 
 import java.util.List;
@@ -40,7 +42,13 @@ public interface WebServiceAPI {
     Call<Void> addContact(@Query("user") String userId,
                           @Body Contact contact);
 
-    // transfer @POST()
+    @POST("transfer")
+    Call<Void> transfer(@Body Transfer transfer);
+
+
+    @POST("invitations")
+    Call<Void> invitation(@Body Invitation invitation);
+
     // invitations
 
 }

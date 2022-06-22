@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.tiktalk.adapters.ChatAdapter;
+import com.example.tiktalk.api.ToOther;
 import com.example.tiktalk.models.Message;
 import com.example.tiktalk.viewModels.MessageViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -66,8 +67,9 @@ public class ChatActivity extends AppCompatActivity {
             //add message to me
             viewModel.add(newMsg);
             viewModel.reload();
-
-            // todo add message to other
+            // add message to other
+            ToOther toOther = new ToOther(LoggedInUser.getCurrentContact().getServer());
+            toOther.sendToOther(LoggedInUser.getCurrentContact().getId(), content);
         });
     }
 }
