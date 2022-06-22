@@ -23,7 +23,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class UserAPI {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;

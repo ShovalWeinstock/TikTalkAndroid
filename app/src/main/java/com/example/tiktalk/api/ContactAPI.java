@@ -68,9 +68,9 @@ public class ContactAPI {
         });
     }
 
-    public void update(Contact contact) { // todo implement
+    public void update(Contact contact) {
     }
 
-    public void delete(Contact contact) { // todo implement
+    public void delete(Contact contact) {
     }
 }

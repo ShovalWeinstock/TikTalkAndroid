@@ -39,8 +39,9 @@ public class ChatActivity extends AppCompatActivity {
         back_btn = findViewById(R.id.back_btn);
         // back to contacts list
         back_btn.setOnClickListener(view -> {
-            Intent i = new Intent(this, ContactsActivity.class);
-            startActivity(i);
+            finish();
+//            Intent i = new Intent(this, ContactsActivity.class);
+//            startActivity(i);
         });
 
         contactNickname = findViewById(R.id.contactNickname);

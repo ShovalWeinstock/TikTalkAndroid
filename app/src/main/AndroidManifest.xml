@@ -33,7 +33,7 @@
             android:name=".activityLogic.UpdateContactActivity"
             android:exported="true"/>
         <activity
-            android:name=".Settings"
+            android:name=".activityLogic.SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".activityLogic.AddContactActivity"

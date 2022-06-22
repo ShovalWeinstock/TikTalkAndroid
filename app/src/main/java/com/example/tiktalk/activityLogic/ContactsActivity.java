@@ -50,7 +50,13 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         //add contact
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
-            Intent i = new Intent(this, AddContactActivity.class);
+            Intent j = new Intent(this, AddContactActivity.class);
+            startActivity(j);
+        });
+
+        FloatingActionButton btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(view -> {
+            Intent i = new Intent(this, SettingsActivity.class);
             startActivity(i);
         });
     }
@@ -67,7 +73,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     @Override
     public void onContactClick(int position) {
         if(position > RecyclerView.NO_POSITION) {
-            LoggedInUser.setCurrentContact(contacts.get(position)); ; //the clicked contact
+            LoggedInUser.setCurrentContact(contacts.get(position)); //the clicked contact
             Intent i = new Intent(this, ChatActivity.class);
             startActivity(i);
         }

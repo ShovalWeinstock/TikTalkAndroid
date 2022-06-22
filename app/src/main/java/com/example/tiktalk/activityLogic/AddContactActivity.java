@@ -1,5 +1,6 @@
 package com.example.tiktalk.activityLogic;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.example.tiktalk.R;
 import com.example.tiktalk.api.ToOther;
 import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.viewModels.ContactViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class AddContactActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class AddContactActivity extends AppCompatActivity {
     private ContactViewModel viewModel;
     EditText et_username, et_nickname, et_server;
     Button add_contact_btn;
+    FloatingActionButton back_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,11 @@ public class AddContactActivity extends AppCompatActivity {
         et_username = findViewById(R.id.addContactUsername);
         et_nickname = findViewById(R.id.addContactNickname);
         et_server = findViewById(R.id.addContactServer);
+
+        back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(view -> {
+            finish();
+        });
 
         add_contact_btn = findViewById(R.id.add_contact_btn);
         add_contact_btn.setOnClickListener(v -> {

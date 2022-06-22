@@ -12,15 +12,6 @@ public class User {
     private String Name; //nickname
     //private android.graphics.drawable.Drawable profilePic;
     private String password;
-    //private List<Contact> contacts;
-
-//    public User(String id, String name, android.graphics.drawable.Drawable profilePic, String password) {
-//        this.id = id;
-//        Name = name;
-//        this.profilePic = profilePic;
-//        this.password = password;
-//        this.contacts = new ArrayList<>();
-//    }
 
     public User(String id, String name, String password) {
         this.id = id;

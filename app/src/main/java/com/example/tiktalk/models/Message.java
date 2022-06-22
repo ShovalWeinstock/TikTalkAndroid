@@ -12,8 +12,6 @@ public class Message {
     private String created;
     private boolean sent;
     private String content;
-    //@PrimaryKey(autoGenerate = false)
-
 
     public Message(String created, boolean sent, String content) {
         this.created = created;
