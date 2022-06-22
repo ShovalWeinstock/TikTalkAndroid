@@ -1,4 +1,4 @@
-package com.example.tiktalk;
+package com.example.tiktalk.activityLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,40 +6,36 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.example.tiktalk.R;
 import com.example.tiktalk.activityLogic.RegistrationActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     EditText et_server;
     Button save_settings_btn;
+    TextView settings_error;
+    FloatingActionButton back_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // username and password input bars
         et_server = findViewById(R.id.settingsServer);
+        settings_error = findViewById(R.id.settings_error);
 
         save_settings_btn = findViewById(R.id.save_settings_btn);
         save_settings_btn.setOnClickListener(v -> {
-            // get username and password, and validate them
             String server = et_server.getText().toString();
-            Boolean check = validate(server); //todo validate?
-
-            // if the data is valid - login to user
-            if(check) {
-                // todo save the changes
-                Intent i = new Intent(this, RegistrationActivity.class); //todo change "Registration" to contacts list
-                startActivity(i);
-            }
+            settings_error.setText("Cannot change Server");
         });
-    }
 
-    // validate username and password
-    private Boolean validate(String server) {
-        return false; // todo compare with db
-
+        back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(v -> {
+            finish();
+        });
     }
 }

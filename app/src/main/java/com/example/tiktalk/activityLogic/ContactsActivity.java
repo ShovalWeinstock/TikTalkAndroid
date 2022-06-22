@@ -36,22 +36,27 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
 
-        SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
-        refreshLayout.setOnRefreshListener(() -> {
-            viewModel.reload();
-        });
+//        SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
+//        refreshLayout.setOnRefreshListener(() -> {
+//            viewModel.reload();
+//        });
 
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {
             this.contacts = contacts;
             adapter.setContacts(contacts);
-//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
 
         //add contact
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
-            Intent i = new Intent(this, AddContactActivity.class);
+            Intent j = new Intent(this, AddContactActivity.class);
+            startActivity(j);
+        });
+
+        FloatingActionButton btnSettings = findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(view -> {
+            Intent i = new Intent(this, SettingsActivity.class);
             startActivity(i);
         });
     }
@@ -63,13 +68,12 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         viewModel.get().observe(this, contacts -> {
             this.contacts = contacts;
             adapter.setContacts(contacts);
-//            refreshLayout.setRefreshing(false); // todo add? its in the lecture notes, and not on the video
         });
     }
     @Override
     public void onContactClick(int position) {
         if(position > RecyclerView.NO_POSITION) {
-            LoggedInUser.setCurrentContact(contacts.get(position)); ; //the clicked contact
+            LoggedInUser.setCurrentContact(contacts.get(position)); //the clicked contact
             Intent i = new Intent(this, ChatActivity.class);
             startActivity(i);
         }

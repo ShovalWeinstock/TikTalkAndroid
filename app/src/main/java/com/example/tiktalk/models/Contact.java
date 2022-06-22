@@ -74,18 +74,4 @@ public class Contact {
                 ", lastDate='" + lastdate + '\'' +
                 '}';
     }
-
-//    public static class Converters {
-//        @TypeConverter
-//        public static ArrayList<Message> fromString(String value) {
-//            Type listType = new TypeToken<ArrayList<Message>>() {}.getType();
-//            return new Gson().fromJson(value, listType);
-//        }
-//
-//        @TypeConverter
-//        public static String fromArrayList(ArrayList<Message> list) {
-//            Gson gson = new Gson();
-//            return gson.toJson(list);
-//        }
-//    }
 }

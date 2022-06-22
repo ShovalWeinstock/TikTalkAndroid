@@ -41,16 +41,10 @@ public class MessageRepository {
             db = AppDB.getDatabase(MyApplication.context);
             messageDao = db.messageDao();
             // update the mutable live data
-            messageListData.postValue(messageDao.getChatWithContact(LoggedInUser.getCurrentContact().getId()));
+            messageListData.postValue(messageDao.getChatWithContact(
+                                      LoggedInUser.getCurrentContact().getId()));
             new Thread(() -> {
-                //sleep for emphasis the communication with the server
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                // not local database
-                api.getChat(); // todo deleted
+                api.getChat();
             }).start();
         }
     }
@@ -60,19 +54,8 @@ public class MessageRepository {
     }
 
     public void add(final Message message) {
-        messageDao.insert(message);
-//        api.add(message); // todo add to not local db
+        api.addMessageToServer(message);
     }
-//    public void update(final Message message) {
-//        messageDao.update(message);
-//        api.update(message
-//        );
-//    }
-
-//    public void delete(final Contact contact) {
-//        contactDao.delete(contact);
-//        api.delete(contact);
-//    }
 
     public void reload() {
         api.getChat();

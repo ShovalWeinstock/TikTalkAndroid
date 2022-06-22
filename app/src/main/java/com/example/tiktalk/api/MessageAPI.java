@@ -1,5 +1,7 @@
 package com.example.tiktalk.api;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.tiktalk.LoggedInUser;
@@ -7,6 +9,8 @@ import com.example.tiktalk.MessageDao;
 import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
 import com.example.tiktalk.models.Message;
+import com.example.tiktalk.models.MessageContent;
+import com.example.tiktalk.models.User;
 
 import java.util.List;
 
@@ -59,63 +63,18 @@ public class MessageAPI {
         });
     }
 
+    public void addMessageToServer(Message newMsg) {
+        MessageContent content = new MessageContent(newMsg.getContent());
+        Call<Void> call = webServiceAPI.addMsg(newMsg.getChatWith(),
+                                               LoggedInUser.getUsername(), content);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+            }
 
-    // todo add
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // get all the contacts of the logged-in user (update the given MutableLiveData object)
-//    public void get() {
-//        Call<List<Contact>> call = webServiceAPI.getContacts(LoggedInUser.username);
-//        call.enqueue(new Callback<List<Contact>>() {
-//            @Override
-//            public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-//                //List<Contact> Contacts =  response.body();//todo delete
-////                contacts.setValue(response.body());
-//                new Thread(() -> {
-//                    dao.clear();
-//                    dao.insertList(response.body());
-//                    contactsListData.postValue(dao.index());
-//                }).start();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Contact>> call, Throwable t) {}
-//        });
-//    }
-
-//    public void add(Contact contact) { // todo implement
-//        Call<Void> call = webServiceAPI.addContact(
-//                LoggedInUser.username,
-//                contact
-//        );
-//        call.enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-////                List<Contact> Contacts =  response.body();//todo delete
-////                contacts.setValue(response.body());
-//                response.isSuccessful();// todo:do something
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {}
-//        });
-//    }
-//    public void update(Contact contact) { // todo implement
-//    }
-//
-//    public void delete(Contact contact) { // todo implement
-//    }
-
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            }
+        });
+    }
 }

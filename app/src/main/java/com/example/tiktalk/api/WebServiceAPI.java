@@ -1,7 +1,10 @@
 package com.example.tiktalk.api;
 
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.MessageContent;
+import com.example.tiktalk.models.Invitation;
 import com.example.tiktalk.models.Message;
+import com.example.tiktalk.models.Transfer;
 import com.example.tiktalk.models.User;
 
 import java.util.List;
@@ -34,13 +37,16 @@ public interface WebServiceAPI {
     Call<List<Message>> getChat(@Path("contactId") String contact, @Query("user") String id);
 
     @POST("contacts/{contact}/messages")
-    Call<Void> addMsg(@Path("contact") String contact, @Body String content, @Query("user") String id);
+    //Call<Void> addMsg(@Path(value = "contact", encoded = true) String contact, @Query("user") String id, @Body String content);
+    Call<Void> addMsg(@Path("contact") String contact, @Query("user") String id, @Body MessageContent content);
 
     @POST("contacts")
     Call<Void> addContact(@Query("user") String userId,
                           @Body Contact contact);
 
-    // transfer @POST()
-    // invitations
+    @POST("transfer")
+    Call<Void> transfer(@Body Transfer transfer);
 
+    @POST("invitations")
+    Call<Void> invitation(@Body Invitation invitation);
 }

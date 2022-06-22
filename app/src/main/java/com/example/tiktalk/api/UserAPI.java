@@ -23,7 +23,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class UserAPI {
     Retrofit retrofit;
     WebServiceAPI webServiceAPI;
@@ -71,7 +70,7 @@ public class UserAPI {
 
                 }
                 else {
-                    addUserToServer(user); // todo ok?
+                    addUserToServer(user);
                     LoggedInUser.setLoggedInUser(user.getId(), user.getName());
                     Intent i = new Intent(MyApplication.context, ContactsActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

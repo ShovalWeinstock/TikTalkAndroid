@@ -42,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
             String nickname = et_nickname.getText().toString();
             String password = et_password.getText().toString();
             String confirmation = et_confirmation.getText().toString();
-            android.graphics.drawable.Drawable profilePic = imageView.getDrawable(); //todo image format
+            android.graphics.drawable.Drawable profilePic = imageView.getDrawable();
 
             // if the data is valid - register the user and login
             Boolean valid = validate(username, password, confirmation);

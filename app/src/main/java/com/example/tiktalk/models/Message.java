@@ -6,15 +6,12 @@ import androidx.room.PrimaryKey;
 
 @Entity(primaryKeys = {"id","chatWith"} )
 public class Message {
-    //@PrimaryKey(autoGenerate = false)
     private int id;
     @NonNull
     private String chatWith;
     private String created;
     private boolean sent;
     private String content;
-    //@PrimaryKey(autoGenerate = false)
-
 
     public Message(String created, boolean sent, String content) {
         this.created = created;

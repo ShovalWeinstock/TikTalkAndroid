@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tiktalk.R;
 import com.example.tiktalk.models.Message;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder>{
@@ -50,6 +51,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
     @Override
     public void onBindViewHolder(ChatAdapter.ChatViewHolder holder, int position) {
         if(chat != null) {
+            //final Message current = chat.get(holder.getAdapterPosition());
             final Message current = chat.get(position);
             holder.content.setText(current.getContent());
             holder.created.setText(current.getCreated());

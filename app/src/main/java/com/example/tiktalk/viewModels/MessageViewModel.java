@@ -21,22 +21,10 @@ public class MessageViewModel extends ViewModel{
         return messages;
     }
 
-//    public Message getSpecific(String id) {
-//        return messages.getValue().get(messages.getValue().indexOf(id));
-//    }
-//
     public void add(Message message) {
         repository.add(message);
     }
-//
-//    public void update(Contact message) {
-//        repository.update(message);
-//    }
-//
-//    public void delete(Contact contact) {
-//        repository.delete(message);
-//    }
-//
+
     public void reload() {
         repository.reload();
     }

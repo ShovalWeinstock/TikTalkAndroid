@@ -5,6 +5,16 @@ import com.example.tiktalk.models.Contact;
 public class LoggedInUser {
     static String username;
     static String nickname;
+    static String server = "5051";
+    static Contact currentContact;
+
+    public static String getServer() {
+        return server;
+    }
+
+    public static void setServer(String server) {
+        LoggedInUser.server = server;
+    }
 
     public static Contact getCurrentContact() {
         return currentContact;
@@ -13,9 +23,6 @@ public class LoggedInUser {
     public static void setCurrentContact(Contact currentContact) {
         LoggedInUser.currentContact = currentContact;
     }
-
-    static Contact currentContact;
-    // picture
 
     public static void setLoggedInUser(String username, String nickname) {
         LoggedInUser.username = username;
@@ -36,11 +43,6 @@ public class LoggedInUser {
     public static String getNickname() {
         return nickname;
     }
-
-
-
-
-
 
 }
 

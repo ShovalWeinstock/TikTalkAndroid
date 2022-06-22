@@ -44,12 +44,6 @@ public class ContactRepository {
             // update the mutable live data
             contactListData.postValue(contactDao.index());
             new Thread(() -> {
-                //sleep for emphasis the communication with the server
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 // not local database
                 api.get();
             }).start();
@@ -77,5 +71,4 @@ public class ContactRepository {
     public void reload() {
         api.get();
     }
-
 }

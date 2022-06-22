@@ -41,8 +41,6 @@ public class ContactAPI {
         call.enqueue(new Callback<List<Contact>>() {
             @Override
             public void onResponse(Call<List<Contact>> call, Response<List<Contact>> response) {
-                List<Contact> Contacts =  response.body();//todo delete
-//                contacts.setValue(response.body());
                  new Thread(() -> {
                     dao.clear();
                     dao.insertList(response.body());
@@ -55,7 +53,7 @@ public class ContactAPI {
         });
     }
 
-    public void add(Contact contact) { // todo implement
+    public void add(Contact contact) {
         Call<Void> call = webServiceAPI.addContact(
                 LoggedInUser.getUsername(),
                 contact
@@ -63,9 +61,6 @@ public class ContactAPI {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-//                List<Contact> Contacts =  response.body();//todo delete
-//                contacts.setValue(response.body());
-                response.isSuccessful();// todo:do something
             }
 
             @Override
@@ -73,9 +68,9 @@ public class ContactAPI {
         });
     }
 
-    public void update(Contact contact) { // todo implement
+    public void update(Contact contact) {
     }
 
-    public void delete(Contact contact) { // todo implement
+    public void delete(Contact contact) {
     }
 }
