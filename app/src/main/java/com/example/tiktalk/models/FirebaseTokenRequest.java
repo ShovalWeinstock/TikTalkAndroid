@@ -4,14 +4,13 @@ public class FirebaseTokenRequest {
     String userId;
     String token;
 
-
-    public String getUserId() {
-        return userId;
-    }
-
     public FirebaseTokenRequest(String userId, String token) {
         this.userId = userId;
         this.token = token;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public void setUserId(String userId) {

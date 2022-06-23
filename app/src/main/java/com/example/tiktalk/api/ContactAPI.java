@@ -28,6 +28,7 @@ public class ContactAPI {
     public ContactAPI(MutableLiveData<List<Contact>> contactsListData, ContactDao dao) {
         this.contactsListData = contactsListData;
         this.dao = dao;
+        // connect to db
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -53,6 +54,7 @@ public class ContactAPI {
         });
     }
 
+    // add the contact to the loggedIn user
     public void add(Contact contact) {
         Call<Void> call = webServiceAPI.addContact(
                 LoggedInUser.getUsername(),

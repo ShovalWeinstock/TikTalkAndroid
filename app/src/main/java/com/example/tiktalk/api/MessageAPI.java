@@ -33,6 +33,7 @@ public class MessageAPI {
     public MessageAPI(MutableLiveData<List<Message>> messagesListData, MessageDao dao) {
         this.messagesListData = messagesListData;
         this.dao = dao;
+        // connect to db
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -40,7 +41,8 @@ public class MessageAPI {
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
 
-        public void getChat() {
+    // get the chat with the current contact
+    public void getChat() {
         Call<List<Message>> call = webServiceAPI.getChat(LoggedInUser.getCurrentContact().getId(), LoggedInUser.getUsername());
         call.enqueue(new Callback<List<Message>>() {
             @Override
@@ -59,14 +61,16 @@ public class MessageAPI {
             }
 
             @Override
-            public void onFailure(Call<List<Message>> call, Throwable t) {}
+            public void onFailure(Call<List<Message>> call, Throwable t) {
+            }
         });
     }
 
+    // add newMsg to the server
     public void addMessageToServer(Message newMsg) {
         MessageContent content = new MessageContent(newMsg.getContent());
         Call<Void> call = webServiceAPI.addMsg(newMsg.getChatWith(),
-                                               LoggedInUser.getUsername(), content);
+                LoggedInUser.getUsername(), content);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

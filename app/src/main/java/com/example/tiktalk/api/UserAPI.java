@@ -29,12 +29,14 @@ public class UserAPI {
     WebServiceAPI webServiceAPI;
 
     public UserAPI() {
+        // connect to db
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyApplication.context.getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         webServiceAPI = retrofit.create(WebServiceAPI.class);
     }
+
 
     public void login(String id, String password, TextView login_error) {
         Call<User> call = webServiceAPI.getUser(id);
@@ -58,7 +60,6 @@ public class UserAPI {
             }
         });
     }
-
 
     public void register(User user, TextView usernameExists) {
         Call<User> call = webServiceAPI.getUser(user.getId());
@@ -85,6 +86,7 @@ public class UserAPI {
         });
     }
 
+    // add user to the server
     public void addUserToServer(User user) {
         Call<Void> call = webServiceAPI.addUser(user);
         call.enqueue(new Callback<Void>() {
@@ -98,6 +100,7 @@ public class UserAPI {
         });
     }
 
+    // set firebase token to the loggedIn user
     public void setFirebaseToken(FirebaseTokenRequest request) {
         Call<Void> call = webServiceAPI.setToken(request);
         call.enqueue(new Callback<Void>() {

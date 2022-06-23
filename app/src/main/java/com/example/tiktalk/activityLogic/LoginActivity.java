@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         // username and password input bars
         et_username = findViewById(R.id.loginUsername);
         et_password = findViewById(R.id.loginPassword);
@@ -33,9 +32,10 @@ public class LoginActivity extends AppCompatActivity {
 
         login_btn = findViewById(R.id.login_btn);
         login_btn.setOnClickListener(v -> {
-            // get username and password, and validate them
+            // get username and password
             String username = et_username.getText().toString();
             String password = et_password.getText().toString();
+            // login
             UserAPI api = new UserAPI();
             api.login(username, password, login_error);
         });

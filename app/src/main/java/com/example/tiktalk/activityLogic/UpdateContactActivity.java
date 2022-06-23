@@ -15,8 +15,6 @@ import com.example.tiktalk.viewModels.ContactViewModel;
 
 public class UpdateContactActivity extends AppCompatActivity {
 
-    private AppDB db;
-    private ContactDao contactDao;
     private ContactViewModel viewModel;
     EditText et_nickname;
     Button updateContactBtn;

@@ -8,6 +8,8 @@ import com.example.tiktalk.models.Contact;
 import com.example.tiktalk.models.Message;
 import com.example.tiktalk.models.User;
 
+
+// local database
 @Database(entities = {Contact.class, User.class, Message.class}, version = 16)
 
 public abstract class AppDB extends RoomDatabase {

@@ -31,6 +31,7 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
 
+        // connect to firebase
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnSuccessListener(ContactsActivity.this, instanceIdResult -> {
                     String newToken = instanceIdResult.getToken();
@@ -45,23 +46,24 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
 
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
 
+        // contacts list view
         RecyclerView lvContacts = findViewById(R.id.lstContacts);
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
-
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {
             this.contacts = contacts;
             adapter.setContacts(contacts);
         });
 
-        //add contact
+        //add contact button
         FloatingActionButton btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(view -> {
             Intent j = new Intent(this, AddContactActivity.class);
             startActivity(j);
         });
 
+        // settings button
         FloatingActionButton btnSettings = findViewById(R.id.btnSettings);
         btnSettings.setOnClickListener(view -> {
             Intent i = new Intent(this, SettingsActivity.class);

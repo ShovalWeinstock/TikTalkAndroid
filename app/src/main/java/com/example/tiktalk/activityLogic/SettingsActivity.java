@@ -27,12 +27,14 @@ public class SettingsActivity extends AppCompatActivity {
         et_server = findViewById(R.id.settingsServer);
         settings_error = findViewById(R.id.settings_error);
 
+        // save button
         save_settings_btn = findViewById(R.id.save_settings_btn);
         save_settings_btn.setOnClickListener(v -> {
             String server = et_server.getText().toString();
             settings_error.setText("Cannot change Server");
         });
 
+        // back to contacts list button
         back_btn = findViewById(R.id.back_btn);
         back_btn.setOnClickListener(v -> {
             finish();

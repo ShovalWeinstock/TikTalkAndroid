@@ -55,16 +55,22 @@ public class ContactRepository {
     }
 
     public void add(final Contact contact) {
+        // add contact to local db
         contactDao.insert(contact);
+        // add contact to remote db
         api.add(contact);
     }
     public void update(final Contact contact) {
+        // update contact on local db
         contactDao.update(contact);
+        // update contact on remote db
         api.update(contact);
     }
 
     public void delete(final Contact contact) {
+        // delete contact from local db
         contactDao.delete(contact);
+        // delete contact from remote db
         api.delete(contact);
     }
 

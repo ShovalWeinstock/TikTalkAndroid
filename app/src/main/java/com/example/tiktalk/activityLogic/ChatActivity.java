@@ -41,7 +41,7 @@ public class ChatActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MessageViewModel.class);
 
         back_btn = findViewById(R.id.back_btn);
-        // back to contacts list
+        // back to contacts list button
         back_btn.setOnClickListener(view -> {
             finish();
         });
@@ -49,17 +49,18 @@ public class ChatActivity extends AppCompatActivity {
         contactNickname = findViewById(R.id.contactNickname);
         contactNickname.setText(LoggedInUser.getCurrentContact().getName());
 
+        // messages list view
         RecyclerView lvMessages = findViewById(R.id.lstMessages);
         lvMessages.setAdapter(adapter);
         lvMessages.setLayoutManager(new LinearLayoutManager(this));
 
-        // get contacts list and view it, using the adapter
         viewModel.get().observe(this, messages -> {
             adapter.setChat(messages);
         });
 
+        // typing area
         typingArea = findViewById(R.id.typingArea);
-
+        // sent button
         btnSend = findViewById(R.id.btnSend);
         btnSend.setOnClickListener(v -> {
             // get message

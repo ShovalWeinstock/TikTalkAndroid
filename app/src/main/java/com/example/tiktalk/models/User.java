@@ -40,14 +40,6 @@ public class User {
         Name = name;
     }
 
-//    public android.graphics.drawable.Drawable getProfilePic() {
-//        return profilePic;
-//    }
-//
-//    public void setProfilePic(android.graphics.drawable.Drawable profilePic) {
-//        this.profilePic = profilePic;
-//    }
-
     public String getPassword() {
         return password;
     }
@@ -55,12 +47,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-   // public List<Contact> getContacts() {
-   //     return contacts;
-    //}
-
-    //public void setContacts(List<Contact> contacts) {
-    //    this.contacts = contacts;
-    //}
 }

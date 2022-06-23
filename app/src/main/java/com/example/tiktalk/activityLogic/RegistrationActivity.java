@@ -62,7 +62,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
-
     // validate the registration data (except if username exists)
     private Boolean validate(String username, String password, String confirmation) {
         // validate username
