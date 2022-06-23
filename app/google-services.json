@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "35662049365",
+    "project_id": "tiktalk-af946",
+    "storage_bucket": "tiktalk-af946.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35662049365:android:bd1a50ce44c7076c8e64dc",
+        "android_client_info": {
+          "package_name": "com.example.tiktalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35662049365-1d3qf2o4vkja4tj3dqs0sbnubejkct9s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7b8j4AypJJ9uvXmtuk8RPq1Zo0eCoV2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35662049365-1d3qf2o4vkja4tj3dqs0sbnubejkct9s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

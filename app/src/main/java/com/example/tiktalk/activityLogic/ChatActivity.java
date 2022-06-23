@@ -13,9 +13,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.tiktalk.adapters.ChatAdapter;
 import com.example.tiktalk.api.ToOther;
+import com.example.tiktalk.models.FirebaseTokenRequest;
 import com.example.tiktalk.models.Message;
 import com.example.tiktalk.viewModels.MessageViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
@@ -31,6 +34,15 @@ public class ChatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnSuccessListener(ChatActivity.this, instanceIdResult -> {
+                    String newToken = instanceIdResult.getToken();
+                    FirebaseTokenRequest request = new FirebaseTokenRequest(LoggedInUser.getUsername(),
+                                                                            newToken);
+
+
+                });
 
         adapter = new ChatAdapter(this);
 
