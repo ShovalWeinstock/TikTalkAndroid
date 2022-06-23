@@ -65,7 +65,7 @@ public class AddContactActivity extends AppCompatActivity {
 
     // validate username and password
     private Boolean validate(String username, String server) {
-        return true; // todo compare with db
+        return true;
 
     }
 }
