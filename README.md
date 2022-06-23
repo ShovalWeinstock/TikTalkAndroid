@@ -11,22 +11,21 @@ In order to run the project:
    
    https://github.com/itamar-st/TikTalkServerUpdatedForEx3
    
-   (The server is localhost:5051. it is hard coded in the client side)
-      
-2) Open TikTalkAndroid and run it using the emulator (suggested device - pixel 2 with android 11):
+2) We used "MariaDB". 
+   Execute the following commands in the Package Console Manager: 
+ - Add-Migration
+ - Update-Database.
+         
+3) Open TikTalkAndroid and run it using the emulator (suggested device - pixel 2 with android 11):
    
     https://github.com/ShovalWeinstock/TikTalkAndroid
   
-3) Register to the applications:
+4) Register to the applications. suggested password: 12345678Aa
 
-    suggested password: 12345678Aa
+5) Enter the application again, and register again (in order to send messages between multiple users):
 
-4) exit from the applications:
-
-5) enter to the applications and register again (in order to send messages between multiple users):
-
-6) add the the first user as a contact to the second user(contact server is 5051[without localhost])
+6) Add the the first user as a contact of the second user (contact server is 5051 [without "localhost"])
 
 7) send messages to the contact
 
-  * you can get messages by enter to the other first user and send a message or use the swagger transfer controller 
+  * you can get messages by loggin-in to the contact and send a message, or by using the swagger transfer controller 
