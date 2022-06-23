@@ -27,7 +27,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-
         adapter = new ContactListAdapter(this, this);
 
         viewModel = new ViewModelProvider(this).get(ContactViewModel.class);
@@ -36,10 +35,10 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
 
-//        SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
-//        refreshLayout.setOnRefreshListener(() -> {
-//            viewModel.reload();
-//        });
+        SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(() -> {
+            viewModel.reload();
+        });
 
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {
