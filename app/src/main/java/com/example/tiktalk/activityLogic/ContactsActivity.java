@@ -31,7 +31,6 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
 
-
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnSuccessListener(ContactsActivity.this, instanceIdResult -> {
                     String newToken = instanceIdResult.getToken();
@@ -50,10 +49,10 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
         lvContacts.setAdapter(adapter);
         lvContacts.setLayoutManager(new LinearLayoutManager(this));
 
-//        SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
-//        refreshLayout.setOnRefreshListener(() -> {
-//            viewModel.reload();
-//        });
+        SwipeRefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(() -> {
+            viewModel.reload();
+        });
 
         // get contacts list and view it, using the adapter
         viewModel.get().observe(this, contacts -> {

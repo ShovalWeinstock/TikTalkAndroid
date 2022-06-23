@@ -44,8 +44,6 @@ public class ChatActivity extends AppCompatActivity {
         // back to contacts list
         back_btn.setOnClickListener(view -> {
             finish();
-//            Intent i = new Intent(this, ContactsActivity.class);
-//            startActivity(i);
         });
 
         contactNickname = findViewById(R.id.contactNickname);
@@ -71,7 +69,6 @@ public class ChatActivity extends AppCompatActivity {
             newMsg.setChatWith(LoggedInUser.getCurrentContact().getId());
             //add message to me
             viewModel.add(newMsg);
-            viewModel.reload();
             // add message to other
             ToOther toOther = new ToOther(LoggedInUser.getCurrentContact().getServer());
             toOther.sendToOther(LoggedInUser.getCurrentContact().getId(), content);
