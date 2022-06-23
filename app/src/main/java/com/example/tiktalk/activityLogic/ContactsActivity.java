@@ -12,13 +12,16 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.tiktalk.LoggedInUser;
 import com.example.tiktalk.R;
 import com.example.tiktalk.adapters.ContactListAdapter;
+import com.example.tiktalk.api.UserAPI;
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.FirebaseTokenRequest;
 import com.example.tiktalk.viewModels.ContactViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
-public class ContactsActivity extends AppCompatActivity implements ContactListAdapter.onContactListener{
+public class ContactsActivity extends AppCompatActivity implements ContactListAdapter.onContactListener {
     private List<Contact> contacts;
     private ContactListAdapter adapter;
     private ContactViewModel viewModel;
@@ -27,6 +30,17 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnSuccessListener(ContactsActivity.this, instanceIdResult -> {
+                    String newToken = instanceIdResult.getToken();
+                    FirebaseTokenRequest request = new FirebaseTokenRequest(LoggedInUser.getUsername(),
+                            newToken);
+
+                    UserAPI userApi = new UserAPI();
+                    userApi.setFirebaseToken(request);
+                });
 
         adapter = new ContactListAdapter(this, this);
 
@@ -70,9 +84,10 @@ public class ContactsActivity extends AppCompatActivity implements ContactListAd
             adapter.setContacts(contacts);
         });
     }
+
     @Override
     public void onContactClick(int position) {
-        if(position > RecyclerView.NO_POSITION) {
+        if (position > RecyclerView.NO_POSITION) {
             LoggedInUser.setCurrentContact(contacts.get(position)); //the clicked contact
             Intent i = new Intent(this, ChatActivity.class);
             startActivity(i);
