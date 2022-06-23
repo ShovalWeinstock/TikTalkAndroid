@@ -1,10 +1,15 @@
 package com.example.tiktalk;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -15,8 +20,25 @@ public class MyService extends FirebaseMessagingService {
     }
 
     @Override
-    public void onMessageReceived(@NonNull RemoteMessage message) {
-        super.onMessageReceived(message);
-        int x = 1;
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+
+        if (remoteMessage.getNotification() != null) {
+            createNotificationChannel();
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "1").setSmallIcon(R.drawable.ic_launcher_foreground)
+                    .setContentTitle(remoteMessage.getNotification().getTitle()).setContentText(remoteMessage.getNotification().getBody()).setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.notify(1, builder.build());
+        }
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("1", "My channel", importance);
+            channel.setDescription("tikTalk");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }
