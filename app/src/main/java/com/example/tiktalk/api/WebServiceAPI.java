@@ -1,6 +1,7 @@
 package com.example.tiktalk.api;
 
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.FirebaseTokenRequest;
 import com.example.tiktalk.models.MessageContent;
 import com.example.tiktalk.models.Invitation;
 import com.example.tiktalk.models.Message;
@@ -49,4 +50,7 @@ public interface WebServiceAPI {
 
     @POST("invitations")
     Call<Void> invitation(@Body Invitation invitation);
+
+    @POST("setToken")
+    Call<Void> setToken(@Body FirebaseTokenRequest request);
 }

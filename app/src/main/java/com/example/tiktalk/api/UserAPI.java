@@ -12,6 +12,7 @@ import com.example.tiktalk.MyApplication;
 import com.example.tiktalk.R;
 import com.example.tiktalk.activityLogic.ContactsActivity;
 import com.example.tiktalk.models.Contact;
+import com.example.tiktalk.models.FirebaseTokenRequest;
 import com.example.tiktalk.models.User;
 import com.example.tiktalk.UserDao;
 
@@ -86,6 +87,19 @@ public class UserAPI {
 
     public void addUserToServer(User user) {
         Call<Void> call = webServiceAPI.addUser(user);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+            }
+        });
+    }
+
+    public void setFirebaseToken(FirebaseTokenRequest request) {
+        Call<Void> call = webServiceAPI.setToken(request);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
