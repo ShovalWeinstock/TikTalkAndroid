@@ -4,6 +4,15 @@ Authors:
   Shoval Weinstok 209540731
 
   Itamar Shachen Tov 207497769
+  
+<img width="183" alt="androidLogin" src="https://user-images.githubusercontent.com/92527489/198890055-f2559642-4cb6-441a-a161-61cdc5238388.png">
+
+<img width="185" alt="registrationAndroid" src="https://user-images.githubusercontent.com/92527489/198890067-928b4e1a-ce88-4346-86b4-791945f6dac7.png">
+
+<img width="184" alt="contacts" src="https://user-images.githubusercontent.com/92527489/198890072-babc3624-649c-475d-b06c-bcf9e20bc8cc.png">
+
+<img width="187" alt="chatAndroid" src="https://user-images.githubusercontent.com/92527489/198890076-c397f4d8-8f01-4655-afec-65b778284c80.png">
+
 
 In order to run the project:
 
