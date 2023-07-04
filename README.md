@@ -1,9 +1,9 @@
 # TikTalkAndroid
 Authors:
 
-  Shoval Weinstok 209540731
-
-  Itamar Shachen Tov 207497769
+  Shoval Weinstok
+  
+  Itamar Shachen Tov
   
 <img width="183" alt="androidLogin" src="https://user-images.githubusercontent.com/92527489/198890055-f2559642-4cb6-441a-a161-61cdc5238388.png">
 
