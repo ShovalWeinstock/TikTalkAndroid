@@ -46,13 +46,12 @@ public class AddContactActivity extends AppCompatActivity {
 
         add_contact_btn = findViewById(R.id.add_contact_btn);
         add_contact_btn.setOnClickListener(v -> {
-            // get username and password, and validate them
             String username = et_username.getText().toString();
             String nickname = et_nickname.getText().toString();
             String server = et_server.getText().toString();
             Boolean check = validate(username, server);
 
-            // if the data is valid - login to user
+            // if the data is valid - add contact
             if(check) {
                 Contact contact = new Contact(username, nickname,"","", server);
                 viewModel.add(contact);
@@ -63,7 +62,6 @@ public class AddContactActivity extends AppCompatActivity {
         });
     }
 
-    // validate username and password
     private Boolean validate(String username, String server) {
         return true;
 
